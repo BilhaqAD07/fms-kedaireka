@@ -77,7 +77,7 @@ const SignUp = () => {
             switch (error.code) {
                 case "auth/invalid-email":
                     setIsError(true);
-                    setErrorMessageEmail("Email tidak valiud");  
+                    setErrorMessageEmail("Email tidak valid");  
                     break;
                 case "auth/email-already-in-use":
                     setIsError(true);
@@ -118,7 +118,7 @@ const SignUp = () => {
                         </Link>
                     </Card>
                 ) : (
-                    <Card className="w-fit md:w-full p-8 m-auto bg-white rounded-md shadow-xl shadow-gray-600 ring lg:max-w-xl relative mx-auto">
+                    <Card className="w-fit p-8 m-auto bg-white rounded-md shadow-xl shadow-gray-600 ring lg:max-w-xl relative mx-auto">
                         <h1 className="text-3xl font-bold text-center text-primary_blue uppercase font-sans mt-5">
                         Sign Up
                         </h1>
