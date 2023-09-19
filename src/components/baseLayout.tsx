@@ -1,5 +1,6 @@
 import { ReactNode } from "react";
 import Sidebar from "./Sidebar";
+import SidebarProvider from "./SidebarContext";
 
 interface Props {
     children: ReactNode | ReactNode[];
@@ -8,8 +9,10 @@ interface Props {
 const BaseLayout = ({children} : Props) => {
     return (
     <div className="layout flex h-screen gap-7">
-        <Sidebar/>
-        {children}
+        <SidebarProvider>
+            <Sidebar/>
+            {children}
+        </SidebarProvider>
     </div>)
 };
 
