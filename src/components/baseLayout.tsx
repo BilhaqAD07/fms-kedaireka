@@ -50,7 +50,7 @@ const BaseLayout = ({children} : Props) => {
                         </Link>
                         <Link href="/Settings" className="flex justify-start items-center shadow-inner shadow-black rounded-full mb-3 no-underline hover:bg-black hover:bg-opacity-50 p-3 hover:text-white gap-4">
                             <SettingsOutlinedIcon className="text-white text-3xl"/>
-                            <Link className="text-white text-lg" href="/Settings">Settings</Link>
+                            <Typography className="text-white text-lg">Settings</Typography>
                         </Link>
                         <Link href="/login" className="flex justify-start items-center shadow-inner shadow-black rounded-full mb-3 no-underline hover:bg-black hover:bg-opacity-50 p-3 hover:text-white gap-4">
                             <Logout className="text-white text-3xl"/>

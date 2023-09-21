@@ -9,9 +9,10 @@ import {
 import { useTheme } from 'next-themes'
 import LocalFireDepartmentIcon from '@mui/icons-material/LocalFireDepartment';
 import MailOutlineOutlinedIcon from '@mui/icons-material/MailOutlineOutlined';
-import NotificationsActiveOutlinedIcon from '@mui/icons-material/NotificationsActiveOutlined';
 import NightlightOutlinedIcon from '@mui/icons-material/NightlightOutlined';
 import WbSunnyOutlinedIcon from '@mui/icons-material/WbSunnyOutlined';
+import NotificationSelectBox from './NotificationSelectBox';
+import { Link } from 'react-router-dom';
 
 function Header() {
     const [mounted, setMounted] = useState(false)
@@ -44,20 +45,20 @@ function Header() {
             </Typography>
         </div>
         <div className="flex right gap-4 mr-5 items-center">
-            <Button>
-                <NotificationsActiveOutlinedIcon className='rounded-full text-white text-4xl'/>
-            </Button>
-            <Button>
+            <div className='rounded-full py-1 px-4 hover:bg-black cursor-pointer hover:bg-opacity-60'>
+                <NotificationSelectBox/>
+            </div>
+            <Button className='rounded-full hover:bg-black hover:bg-opacity-60'>
                 <MailOutlineOutlinedIcon className='rounded-full text-white text-4xl'/>
             </Button>
 
                 {theme === "dark" ? (
-                    <Button className='rounded-full hover:bg-black hover:bg-opacity-60'>
-                        <WbSunnyOutlinedIcon className='rounded-full text-white text-4xl' onClick={() => setTheme("light")}/>
+                    <Button className='rounded-full bg-black bg-opacity-40 hover:bg-black hover:bg-opacity-60' onClick={() => setTheme("light")}>
+                        <WbSunnyOutlinedIcon className='rounded-full text-white text-4xl'/>
                     </Button>
                 ) : (
-                    <Button className='rounded-full hover:bg-black hover:bg-opacity-60'>
-                        <NightlightOutlinedIcon className='rounded-full text-white text-4xl' onClick={() => setTheme("dark")}/>
+                    <Button className='rounded-full hover:bg-black hover:bg-opacity-60' onClick={() => setTheme("dark")}>
+                        <NightlightOutlinedIcon className='text-white text-4xl'/>
                     </Button>
                     )}
         </div>
