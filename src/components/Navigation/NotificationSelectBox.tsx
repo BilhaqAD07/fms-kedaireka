@@ -37,7 +37,7 @@ const NotificationSelectBox = () => {
         <div onClick={() => setOpen((prev) => !prev)} className="flex flex-row justify-between items-center rounded-lg">
           <NotificationsActiveOutlinedIcon className='rounded-full text-white text-4xl' />
         </div>
-        <div className={`notification-box flex flex-col bg-white dark:bg-darkmode_grey text-black dark:text-white w-72 h-80 overflow-y-auto my-1 rounded-lg drop-shadow-xl dark:border-white border ${open ? "opacity-100" : "opacity-0 h-0"
+        <div className={`notification-box flex flex-col bg-white dark:bg-darkmode_grey text-black dark:text-white w-72 h-80 overflow-y-auto my-1 rounded-lg drop-shadow-xl dark:border-white border ${open ? "opacity-100" : "hidden"
           } transition-all duration-100 overflow-hidden absolute top-12 right-0`}>
 
           {notifications.map(({ id, title, description, timestamp, route, read }) => (
