@@ -1,11 +1,21 @@
-import SidebarProvider from "@/components/SidebarContext";
-import type { AppProps } from "next/app";
-import "@/app/globals.css"
+'use client'
+import React from "react";
+import {
+    Button,
+    Typography,
+    Container,
+    Box,
+    TextField,
+    LinearProgress,
+} from '@mui/material'
+import BaseLayout from "@/components/baseLayout";
 
-export default function App({ Component, pageProps}: AppProps) {
+const Home = () => {
     return (
-        <SidebarProvider>
-            <Component {...pageProps}/>
-        </SidebarProvider>
+        <BaseLayout>
+            <h2>Home Page</h2>
+        </BaseLayout>
     )
 }
+
+export default Home;

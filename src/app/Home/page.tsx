@@ -8,7 +8,6 @@ import {
     TextField,
     LinearProgress,
 } from '@mui/material'
-import Sidebar from "@/components/Sidebar";
 import BaseLayout from "@/components/baseLayout";
 
 const Home = () => {
