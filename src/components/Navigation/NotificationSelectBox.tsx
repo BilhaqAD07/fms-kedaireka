@@ -40,7 +40,7 @@ const NotificationSelectBox = () => {
       <div className='flex flex-col justify-center items-center relative z-30'>
         <div onClick={() => setOpen((prev) => !prev)} className="flex flex-row justify-between items-center rounded-lg">
           <Badge badgeContent={unreadNotifications.length} color='info'> {/* Tampilkan jumlah notifikasi yang belum terbaca */}
-            <NotificationsActiveOutlinedIcon className='rounded-full text-white text-4xl' />
+            <NotificationsActiveOutlinedIcon className='rounded-full text-white md:text-4xl text-xl' />
           </Badge>
         </div>
         <div className={`notification-box flex flex-col bg-white dark:bg-darkmode_grey text-black dark:text-white overflow-y-auto my-1 rounded-lg drop-shadow-xl dark:border-white border ${open ? "w-72 h-80" : "h-0 w-0 border-none"
