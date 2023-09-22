@@ -6,7 +6,9 @@ import BaseLayout from '@/components/baseLayout'
 function Settings() {
   return (
     <BaseLayout>
-      <h2>SETTING PAGE</h2>
+      <div className=" absolute  item-center bg-white shadow shadow-inner border border-black rounded ">
+        SETTINGS
+        </div>>
     </BaseLayout>
   )
 }
