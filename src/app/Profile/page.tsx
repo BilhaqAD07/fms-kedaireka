@@ -1,6 +1,5 @@
 'use client'
 
-import BaseLayout from '@/components/baseLayout'
 import React from "react";
 import { Card, List, colors } from "@mui/material";
 import ListItemButton from "@mui/material/ListItemButton";
