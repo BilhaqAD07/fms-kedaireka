@@ -5,9 +5,9 @@ import BaseLayout from '@/components/baseLayout'
 
 function Settings() {
   return (
-    <BaseLayout>
-      <h2>SETTING PAGE</h2>
-    </BaseLayout>
+    <div className="bg-white rounded-lg p-4">
+      Setting Page
+    </div>
   )
 }
 

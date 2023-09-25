@@ -43,7 +43,7 @@ const NotificationSelectBox = () => {
             <NotificationsActiveOutlinedIcon className='rounded-full text-white md:text-4xl text-xl' />
           </Badge>
         </div>
-        <div className={`notification-box flex flex-col bg-white dark:bg-darkmode_grey text-black dark:text-white overflow-y-auto my-1 rounded-lg drop-shadow-xl dark:border-white border ${open ? "w-72 h-80" : "h-0 w-0 border-none"
+        <div className={`notification-box flex flex-col bg-white dark:bg-primary_dark text-black dark:text-white overflow-y-auto my-1 rounded-lg drop-shadow-xl dark:border-white border ${open ? "w-72 h-80" : "h-0 w-0 border-none"
           } transition-all duration-200 overflow-hidden absolute top-12 right-0`}>
           {notifications.map(({ id, title, description, timestamp, route, read }) => (
             <div
@@ -54,7 +54,7 @@ const NotificationSelectBox = () => {
               }}
               className={`notification-list flex justify-start p-2 border-b hover:bg-opacity-30 hover:bg-black`}
             >
-              <Link href={route} className={`w-full flex flex-col p-2 rounded ${read ? 'dark:bg-darkmode_grey bg-white' : 'bg-sky-100 dark:bg-slate-600'}`}>
+              <Link href={route} className={`w-full flex flex-col p-2 rounded ${read ? 'dark:bg-primary_dark bg-white' : 'bg-sky-100 dark:bg-slate-600'}`}>
                 <Typography className="title text-left font-bold text-lg">
                   {title}
                 </Typography>

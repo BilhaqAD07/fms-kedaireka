@@ -5,9 +5,9 @@ import React from 'react'
 
 function Chart() {
   return (
-    <BaseLayout>
+    <div>
       <h2>CHART PAGE</h2>
-    </BaseLayout>
+    </div>
   )
 }
 
