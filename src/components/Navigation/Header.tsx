@@ -8,8 +8,6 @@ import {
 import { useTheme } from 'next-themes';
 import LocalFireDepartmentIcon from '@mui/icons-material/LocalFireDepartment';
 import MailOutlineOutlinedIcon from '@mui/icons-material/MailOutlineOutlined';
-import NightlightOutlinedIcon from '@mui/icons-material/NightlightOutlined';
-import WbSunnyOutlinedIcon from '@mui/icons-material/WbSunnyOutlined';
 import NotificationSelectBox from './NotificationSelectBox';
 import Sun from '../svg/Sun.svg';
 import Moon from '../svg/Moon.svg';
