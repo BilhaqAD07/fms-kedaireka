@@ -17,7 +17,8 @@ const config: Config = {
       },
       colors: {
         primary_blue: '#1C5F7B', // primary color for the site (used in header)
-        darkmode_grey: '#303030', // dark mode primary color
+        primary_dark: '#213140', // dark mode primary color
+        secondary_dark: '#303030', // dark mode secondary color
       },
     },
   },

@@ -26,7 +26,7 @@ const BaseLayout = ({children} : Props) => {
     
     // const { open } = useContext(MenuContext);
     return (
-        <div className="dark:bg-darkmode_grey min-h-screen">
+        <div className="dark:bg-primary_dark min-h-screen">
             {/* <div className={`flex justify-between`}>
                 <button onClick={()=> setIsOpen(!isOpen)}><p>buka</p></button>
                 
