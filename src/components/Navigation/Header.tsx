@@ -56,7 +56,7 @@ function Header() {
     return (
         <div className=" bg-primary_blue min-w-fit flex justify-between gap-1 md:gap-4 items-center px-1 md:px-4 py-4 mb-1 relative">
             <div className="left flex text-white items-center">
-                <Button onClick={toggle} className="toogle-btn rounded-full hover:bg-black hover:opacity-60">
+                <Button onClick={toggle} className="toogle-btn rounded-full hover:bg-black hover:opacity-60 lg:hidden">
                     <GridViewIcon className='rounded-full text-white md:text-4xl'/>
                 </Button>
                 <div className={`logo-brand flex items-center gap-1 ${isSmallScreen ? 'hidden' : ''}`}>

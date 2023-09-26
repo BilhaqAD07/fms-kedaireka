@@ -12,9 +12,11 @@ import BaseLayout from "@/components/baseLayout";
 
 const Home = () => {
     return (
-        <div className="bg-white rounded-lg p-4">
-            HOME PAGE
-        </div>
+        <BaseLayout>
+            <Container className="text-black drop-shadow bg-green-400 shadow-black dark:bg-white rounded-lg p-4">
+                HELLOW WORLD
+            </Container>
+        </BaseLayout>
     )
 }
 

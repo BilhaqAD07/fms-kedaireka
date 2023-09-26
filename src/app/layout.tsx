@@ -23,7 +23,7 @@ export default function RootLayout({
       <body className={font.className}>
         <Providers>
           <MenuContextProvider>
-            <BaseLayout>{children}</BaseLayout>
+            <main>{children}</main>
           </MenuContextProvider>
         </Providers>
       </body>
