@@ -20,7 +20,7 @@ function MainSidebar() {
 
     return (
         <>
-            <aside className={`bg-primary_blue top-4 left-4 lg:fixed lg:block lg:top-24 lg:left-8 rounded-lg overflow-hidden transition-all duration-200 ${
+            <aside className={`bg-primary_blue top-4 left-4 lg:fixed lg:block lg:top-24 lg:left-4 rounded-lg overflow-hidden transition-all duration-200 ${
                 open ? 'w-60 p-4 z-50 block fixed' : 'w-0 hidden'
             } lg:w-60 lg:min-h-[80vh] lg:p-4 max-lg:z-20 shadow-sm`}>
                 <ul>

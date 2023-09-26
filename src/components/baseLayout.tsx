@@ -21,7 +21,7 @@ const BaseLayout = ({children} : Props) => {
             <MainSidebar/>
             <div className={`${open ? 'max-lg:blur-xl pointer-events-none' : ''}`}>
                 <Header/>
-                <main className="lg:ml-72">{children}</main>
+                <main className="lg:ml-72 mt-5 px-4">{children}</main>
             </div>
         </div>
     )

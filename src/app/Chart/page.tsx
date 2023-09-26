@@ -5,9 +5,11 @@ import React from 'react'
 
 function Chart() {
   return (
-    <div>
-      <h2>CHART PAGE</h2>
-    </div>
+    <BaseLayout>
+      <div>
+        <h2>CHART PAGE</h2>
+      </div>
+    </BaseLayout>
   )
 }
 
