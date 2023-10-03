@@ -40,7 +40,7 @@ function Canvas (Props: any) {
   }
 
   return (
-    <Stage className='bg-white overflow-x-hidden' width={window.innerWidth} height={window.innerHeight}>
+    <Stage className='bg-white border border-black dark:border-white dark:bg-secondary_dark overflow-x-hidden' width={window.innerWidth} height={window.innerHeight}>
       <Layer>
         <Text text="Try to drag a star" />
         {stars.map((star) => (
