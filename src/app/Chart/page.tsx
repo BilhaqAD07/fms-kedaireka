@@ -2,22 +2,25 @@
 
 import BaseLayout from '@/components/baseLayout'
 import React from 'react'
-import Button from '@mui/material/Button';
 import { useState } from 'react';
 import { AiOutlineCaretDown } from 'react-icons/ai';
-import Popover from '@mui/material/Popover';
-import DatePicker from 'react-datepicker';
-import 'react-datepicker/dist/react-datepicker.css';
-import TimePicker from 'react-time-picker';
-import 'react-time-picker/dist/TimePicker.css';
+import {Button, Popover, TextField,} from "@mui/material";
+import { DateTimePicker } from "@mui/x-date-pickers/DateTimePicker";
+import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
+import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+import { Box } from "@mui/system";
 
 function Chart() {
 
   const [anchorEl, setAnchorEl] = useState(null);
   const [isIconRotated, setIsIconRotated] = useState(false);
-  const [selectedUser, setSelectedUser] = useState('User 1');
-  const [selectedDate, setSelectedDate] = useState(new Date());
-  const [selectedTime, setSelectedTime] = useState('12:00');
+  const [anchorEl1, setAnchorEl1] = useState(null);
+  const [isIconRotated1, setIsIconRotated1] = useState(false);
+
+  const [selectedUser, setSelectedUser] = useState('User');
+  
+  const [selectedDateTimestart, setSelectedDateTimestart] = useState(new Date());
+  const [selectedDateTimeend, setSelectedDateTimeend] = useState(new Date());
 
   const handleClick = (event) => {
     setIsIconRotated(!isIconRotated);
@@ -29,57 +32,97 @@ function Chart() {
     setIsIconRotated(!isIconRotated);
   };
 
+  const handleClick1 = (event) => {
+    setIsIconRotated1(!isIconRotated1);
+    setAnchorEl1(event.currentTarget);
+  };
+
+  const handleClose1 = () => {
+    setAnchorEl1(null);
+    setIsIconRotated1(!isIconRotated1);
+  };
+
   const handleUserClick = (user) => {
     setSelectedUser(user); 
     handleClose();
   };
 
-  const handleDateChange = (date) => {
-    setSelectedDate(date);
-  };
-
-  const handleTimeChange = (time) => {
-    setSelectedTime(time);
-  };
 
   const open = Boolean(anchorEl);
   const id = open ? 'user-popover' : undefined;
 
+  const open1 = Boolean(anchorEl1);
+  const id1 = open ? 'user-popover' : undefined;
+
+  const handleDateTimeChangestart = (newDateTime) => {
+    setSelectedDateTimestart(newDateTime);
+  };
+
+  const handleDateTimeChangeend = (newDateTime) => {
+    setSelectedDateTimeend(newDateTime);
+  };
+
+
+
   return (
     <BaseLayout>
-    <main>
-      <div className="bg-gray-200 dark:bg-secondary_dark text-black dark:text-white rounded-lg p-4">
-          <ul className='flex'>
-            <Button className='hover:bg-gray-300 dark:hover:bg-gray-500 text-black dark:text-white border-black dark:border-white'
-                    variant="outlined"
-                    onClick={handleClick}
-                    aria-describedby={id}>
+    <main className=" flex flex-col bg-gray-200 dark:bg-secondary_dark text-black dark:text-white rounded-lg p-4 ">
+      <ul className='flex flex-wrap ml-6'>
+      <Button className='mr-2 hover:bg-gray-300 dark:hover:bg-gray-500 text-black dark:text-white border-black dark:border-white'
+              variant="outlined"
+              onClick={handleClick}
+              aria-describedby={id}>
               {selectedUser}
               <AiOutlineCaretDown
               className={` ${isIconRotated ?`rotate-180` :''} ml-1 duration-200 `}
               size={20}/>
             </Button>
-            <ul className='flex ml-2 '>
-            <Button className='hover:bg-gray-300 dark:hover:bg-gray-500 text-black dark:text-white border-black dark:border-white'>
-              <div className='flex border-black dark:border-white'>
-                <DatePicker
-                  className='outline-none bg-transparent bg-gray-200 dark:bg-secondary_dark text-black dark:text-white'
-                  selected={selectedDate}
-                  onChange={handleDateChange}
-                  dateFormat="dd/MM/yyyy"
+            <ul className='flex flex-wrap mr-1 bg-gray-200 dark:bg-secondary_dark text-black dark:text-white '>
+              <Button className='hover:bg-gray-300 dark:hover:bg-gray-500 text-black dark:text-white '>
+                <div className='flex flex-wrap rounded items items-center'>
+                <LocalizationProvider dateAdapter={AdapterDateFns}>
+                <div className='hover:bg-gray-300 dark:hover:bg-gray-500 text-black dark:text-white '>
+                <DateTimePicker
+                  label="Start"
+                  value={selectedDateTimestart}
+                  onChange={handleDateTimeChangestart}
+                  renderInput={(params) => <TextField {...params} />}
+                  className='hover:bg-gray-300 dark:hover:bg-gray-500 text-black dark:text-white'
                 />
-                <TimePicker
-                  className='outline-none bg-transparent bg-gray-200 dark:bg-secondary_dark text-black dark:text-white'
-                  value={selectedTime}
-                  onChange={handleTimeChange}
-                  disableClock={true}
-                  style={{ border: 'none' }}
+                </div>
+              </LocalizationProvider>
+                </div>
+              </Button>
+              <Button className='hover:bg-gray-300 dark:hover:bg-gray-500 text-black dark:text-white'>
+                <div className='flex flex-wrap  rounded items items-center'>
+                <LocalizationProvider dateAdapter={AdapterDateFns}>
+                <div>
+                <DateTimePicker
+                  label="end"
+                  value={selectedDateTimeend}
+                  onChange={handleDateTimeChangeend}
+                  renderInput={(params) => <TextField {...params} />}
+                  className='hover:bg-gray-300 dark:hover:bg-gray-500 text-black dark:text-white'
                 />
-              </div>
-            </Button>
+                </div>
+              </LocalizationProvider>
+                </div>
+              </Button>
             </ul>
-          </ul>
-      </div>
+            <Button className='flex flex-wrap ml-2 hover:bg-gray-300 dark:hover:bg-gray-500 text-black dark:text-white border-black dark:border-white'
+              variant="outlined">
+              Search
+            </Button>
+            <Button className='flex flex-wrap ml-4 hover:bg-gray-300 dark:hover:bg-gray-500 text-black dark:text-white border-black dark:border-white'
+              variant="outlined"
+              onClick={handleClick1}
+              aria-describedby={id}>
+              Export
+              <AiOutlineCaretDown
+              className={` ${isIconRotated1 ?`rotate-180` :''} ml-1 duration-200 `}
+              size={20}/>
+            </Button>
+      </ul>
       <Popover
           id={id}
           open={open}
@@ -108,6 +151,37 @@ function Chart() {
             <Button className='hover:bg-gray-300 dark:hover:bg-gray-500 text-black dark:text-white' 
             onClick={() => handleUserClick('User Sepuh')}>
               User Sepuh
+            </Button>
+          </div>
+        </Popover>
+        <Popover
+          id={id1}
+          open={open1}
+          anchorEl={anchorEl1}
+          onClose={handleClose1}
+          anchorOrigin={{
+            vertical: 'bottom',
+            horizontal: 'left',
+          }}
+          transformOrigin={{
+            vertical: 'top',
+            horizontal: 'left',
+          }}
+          className='mt-2 ml-1'
+        >
+          <div className='flex flex-col bg-gray-200 dark:bg-secondary_dark text-black dark:text-white' 
+          style={{ padding: '16px' }}>
+            <Button className='hover:bg-gray-300 dark:hover:bg-gray-500 text-black dark:text-white' 
+            >
+              csv
+            </Button>
+            <Button className='hover:bg-gray-300 dark:hover:bg-gray-500 text-black dark:text-white' 
+            >
+              txt
+            </Button>
+            <Button className='hover:bg-gray-300 dark:hover:bg-gray-500 text-black dark:text-white' 
+          >
+              xlsx
             </Button>
           </div>
         </Popover>
