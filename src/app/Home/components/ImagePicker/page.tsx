@@ -1,19 +1,19 @@
 /* eslint-disable jsx-a11y/alt-text */
-import React, { useEffect, useRef } from "react";
-import { Image, Transformer } from "react-konva";
-import useImage from "use-image";
+import React, { useEffect, useRef } from 'react'
+import { Image, Transformer } from 'react-konva'
+import useImage from 'use-image'
 
 interface ImgPickerProps {
   shapeProps: {
-    x: any;
-    y: any;
-    width: any;
-    height: any;
-  };
-  isSelected: any;
-  onSelect: () => void;
-  onChange: (newProps: any) => void;
-  imageUrl: any;
+    x: any
+    y: any
+    width: any
+    height: any
+  }
+  isSelected: any
+  onSelect: () => void
+  onChange: (newProps: any) => void
+  imageUrl: any
 }
 
 const ImgPicker: React.FC<ImgPickerProps> = ({
@@ -21,44 +21,44 @@ const ImgPicker: React.FC<ImgPickerProps> = ({
   isSelected,
   onSelect,
   onChange,
-  imageUrl,
+  imageUrl
 }) => {
-  const shapeRef = useRef<Image | null>(null);
-  const trRef = useRef<Transformer | null>(null);
+  const shapeRef = useRef<Image | null>(null)
+  const trRef = useRef<Transformer | null>(null)
 
-  const [image] = useImage(imageUrl);
+  const [image] = useImage(imageUrl)
 
   useEffect(() => {
     if (isSelected && trRef.current && shapeRef.current) {
-      trRef.current.setNode(shapeRef.current);
-      trRef.current.getLayer()?.batchDraw();
+      trRef.current.setNode(shapeRef.current)
+      trRef.current.getLayer()?.batchDraw()
     }
-  }, [isSelected]);
+  }, [isSelected])
 
   const handleDragEnd = (e: any) => {
     if (shapeRef.current) {
       onChange({
         ...shapeProps,
         x: e.target.x(),
-        y: e.target.y(),
-      });
+        y: e.target.y()
+      })
     }
-  };
+  }
 
   const handleTransformEnd = () => {
     if (shapeRef.current) {
-      const node = shapeRef.current;
-      const scaleX = node.scaleX();
-      const scaleY = node.scaleY();
+      const node = shapeRef.current
+      const scaleX = node.scaleX()
+      const scaleY = node.scaleY()
       onChange({
         ...shapeProps,
         x: node.x(),
         y: node.y(),
         width: node.width() * scaleX,
-        height: node.height() * scaleY,
-      });
+        height: node.height() * scaleY
+      })
     }
-  };
+  }
 
   return (
     <>
@@ -72,7 +72,7 @@ const ImgPicker: React.FC<ImgPickerProps> = ({
       />
       {isSelected && <Transformer ref={trRef} />}
     </>
-  );
-};
+  )
+}
 
-export default ImgPicker;
+export default ImgPicker
