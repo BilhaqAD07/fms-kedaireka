@@ -1,5 +1,7 @@
 'use client'
 import React from "react";
+import SideBarRight from "./Home/SideBarRight/page";
+
 import {
     Button,
     Typography,
@@ -13,8 +15,10 @@ import BaseLayout from "@/components/baseLayout";
 const Home = () => {
     return (
         <BaseLayout>
-            <Container className="text-black drop-shadow bg-green-400 shadow-black dark:bg-white rounded-lg p-4">
-                HELLOW WORLD
+            <Container className="">
+            <div className="flex justify-end">
+      <SideBarRight />
+        </div>
             </Container>
         </BaseLayout>
     )

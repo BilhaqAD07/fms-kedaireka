@@ -1,46 +1,55 @@
 'use client'
 
 import React from "react";
-import { Card, List, Typography } from "@mui/material";
-import ListItemButton from "@mui/material/ListItemButton";
-import ListItemIcon from "@mui/material/ListItemIcon";
-import ListItemText from "@mui/material/ListItemText";
-import AccountBoxIcon from "@mui/icons-material/AccountBox";
-import EmailIcon from "@mui/icons-material/Email";
-import LocalPhoneIcon from '@mui/icons-material/LocalPhone';
+import {
+    Button,
+    Typography,
+    Container,
+    Box,
+    TextField,
+    LinearProgress,
+    Drawer,
+} from '@mui/material'
 import BaseLayout from "@/components/baseLayout";
+import { useState } from 'react';
+import { BsFillArrowLeftSquareFill } from 'react-icons/bs';
+import { GiCancel } from 'react-icons/gi';
 
-function Profile() {
-  return (
-    <BaseLayout>
-      <div className="flex justify-center items-center min-h-full rounded-lg mx-4 p-4">
-          <Card className='flex p-4 flex-col h-80 dark:bg-secondary_dark text-black dark:text-white w-screen'
-          >
-            <Typography className="font-bold text-center uppercase">My Profile</Typography>
-            <List>
-              <ListItemButton>
-                <ListItemIcon>
-                  <AccountBoxIcon />
-                </ListItemIcon>
-                <ListItemText primary="INI UDIN" />
-              </ListItemButton>
-              <ListItemButton>
-                <ListItemIcon>
-                  <EmailIcon />
-                </ListItemIcon>
-                <ListItemText primary="UDIN@GMAIL.COM" />
-              </ListItemButton>
-              <ListItemButton>
-                <ListItemIcon>
-                  <LocalPhoneIcon />
-                </ListItemIcon>
-                <ListItemText primary="+62813-1678-3223" />
-              </ListItemButton>
-            </List>
-          </Card>
-      </div>
-    </BaseLayout>
-  )
+const Profile = () => {
+
+    const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+
+    const toggleSidebar = () => {
+        setIsSidebarOpen(!isSidebarOpen);
+    };
+
+    return (
+        <BaseLayout>
+        <main>
+            <div className="flex justify-end">
+                <Button  onClick={toggleSidebar}>
+                  <BsFillArrowLeftSquareFill
+              size={30}/>
+              </Button>
+            <Drawer
+                anchor="right"
+                open={isSidebarOpen}
+                onClose={() => setIsSidebarOpen(false)}
+            > 
+                <div className="p-4">
+                  <div className="flex">
+            <Button onClick={() => setIsSidebarOpen(false)}>
+              <GiCancel
+              size={20}/>
+              </Button>
+                  </div>
+                    Sidebar Content
+                </div>  
+            </Drawer>
+            </div>   
+        </main>    
+        </BaseLayout>
+    )
 }
 
 export default Profile

@@ -2,13 +2,16 @@
 
 import React, { useState } from 'react';
 import BaseLayout from '@/components/baseLayout';
+import Switch from '@mui/material/Switch';
+import Button from '@mui/material/Button';
 import { HiMiniSpeakerWave } from 'react-icons/hi2';
 import { AiOutlineCaretDown } from 'react-icons/ai';
 import { MdDevices } from 'react-icons/md';
 import { RiProfileLine } from 'react-icons/ri';
 import { BsKey, BsTelephoneFill } from 'react-icons/bs';
-import { BiToggleLeft, BiToggleRight } from 'react-icons/bi';
+
 import { FaUserCog, } from 'react-icons/fa';
+import { PiDevicesDuotone, } from 'react-icons/pi';
 
 function Settings() {
   const [isDropdownOpen, setIsDropdownOpen ] = useState(false);
@@ -19,11 +22,12 @@ function Settings() {
   const [isIconRotated1, setIsIconRotated1] = useState(false);
   const [isIconRotated2, setIsIconRotated2] = useState(false);
 
-  const [isSoundEffectEnabled, setIsSoundEffectEnabled] = useState(false);
+  const [isResetPasswordPopupOpen, setIsResetPasswordPopupOpen] = useState(false);
+  const [isResetUsernamePopupOpen, setIsResetUsernamePopupOpen] = useState(false);
+  const [isResetNumberPopupOpen, setIsResetNumberPopupOpen] = useState(false);
 
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [isModalOpen1, setIsModalOpen1] = useState(false);
-  const [isModalOpen2, setIsModalOpen2] = useState(false);
+  const [isToggleOn, setIsToggleOn] = useState(false);
+
 
   const toggleDropdown = () => {
     setIsDropdownOpen(!isDropdownOpen);
@@ -40,52 +44,17 @@ function Settings() {
     setIsIconRotated2(!isIconRotated2);
   };
 
-  const toggleSoundEffect = () => {
-    setIsSoundEffectEnabled(!isSoundEffectEnabled);
-    
-    if (isSoundEffectEnabled) {
-      console.log('Sound Effect Aktif');
-    } else {
-      console.log('Sound Effect Nonaktif');
-    }
-  };
-
-  const openModal = () => {
-    setIsModalOpen(true);
-  };
-
-  const closeModal = () => {
-    setIsModalOpen(false);
-  };
-
-  const openModal1 = () => {
-    setIsModalOpen1(true);
-  };
-
-  const closeModal1 = () => {
-    setIsModalOpen1(false);
-  };
-
-  const openModal2 = () => {
-    setIsModalOpen2(true);
-  };
-
-  const closeModal2 = () => {
-    setIsModalOpen2(false);
-  };
-
-
   return (
     <BaseLayout>
-      <main className=" md:my-auto md:mt-auto lg:mt-auto justify-center items-center min-h-screen min-y-screen ">
-        <div className='absolute p-8 rounded-md shadow-xl shadow-drop shadow-black ml-2 duration-500 '>
-          <div className=' text-2xl text-center font-bold italic rounded-md bg-gray '>
+      <main className=" flex justify-center mt-12 items-center min-h-full rounded-lg mx-4 p-4 ">
+        <div className='flex p-10 flex-col w-80 bg-gray-200 dark:bg-secondary_dark text-black dark:text-white rounded-md shadow-xl shadow-drop shadow-black duration-500 '>
+          <div className=' text-3xl text-center font-bold italic rounded-md bg-gray '>
             Settings
           </div>
-          <div className="flex items-center justify-between rounded-md shadow-inner mt-8 font-regular hover:bg-gray-500 ">
-                  <div className=" ml-1">
+          <div className="flex justify-between rounded-md shadow-inner mt-8 font-regular hover:bg-gray-500 ">
+                  <div className=" ml-1 flex">
                     <HiMiniSpeakerWave
-                      className="absolute top-15 left-1 hover:bg-gray-500 rounded shadow-gray-500 shadow-inner"
+                      className="flex flex-col  hover:bg-gray-500 rounded shadow-gray-500 shadow-inner mr-2"
                       size={25}
                     />
                     Sound Effect
@@ -93,28 +62,31 @@ function Settings() {
                   <div
                     onClick={toggleDropdown}
                     style={{ cursor: 'pointer' }}
-                    className="flex items-center "
+                    className="flex flex-col "
                   >
                     <AiOutlineCaretDown className = { `${ isIconRotated ? `rotate-180` : ''} duration-500`} size={25} style={{ marginLeft: '5px' }} />
                   </div>
                 </div>
                 {isDropdownOpen && (
-                  <div className=" rounded-md shadow-xl mt-5 hover:bg-gray-500 ">
+                  <div className=" rounded-md rounded shadow-xl mt-5 " >
                     <ul>
-                    <div>
-            <button className='flex ' onClick={toggleSoundEffect}>
-              {isSoundEffectEnabled ? <BiToggleRight  size={35}  />  : <BiToggleLeft  size={35}/>}
-              <p className='item-bottom mt-1'>{isSoundEffectEnabled ? 'On' : 'Off'}</p>
-            </button>
-          </div>
+                    <div className='flex flex-row items-center'>
+                    <Switch
+                      className='rounded text-black dark:text-white'
+                      checked={isToggleOn}
+                      onChange={() => setIsToggleOn(!isToggleOn)}
+                      color="primary"
+                    />
+                    <span className=''>{isToggleOn ? 'On' : 'Off'}</span>
+                  </div>
                     </ul>
                   </div>
                 )}
                 
-                <div className="flex items-center justify-between rounded-md shadow-inner mt-5 font-regular hover:bg-gray-500">
-                <div className=" ml-1 ">
+                <div className="flex justify-between rounded-md shadow-inner mt-8 font-regular hover:bg-gray-500">
+                <div className=" ml-1 flex ">
                 <MdDevices
-                      className="absolute top-15 left-1 hover:bg-gray-500 rounded shadow-gray-500 shadow-inner"
+                      className="flex flex-col  hover:bg-gray-500 rounded shadow-gray-500 shadow-inner mr-2"
                       size={25}
                     />
                     Devices
@@ -130,16 +102,28 @@ function Settings() {
                   {isDropdownOpen1 && (
                   <div className="rounded-md shadow-xl mt-2">
                     <ul>
-                      <li className='mb-1'>Device Pertama</li>
-                      <li>Device Kedua</li>
+                      <Button className='flex rounded-md hover:bg-blue-300 dark:hover:bg-blue-700 mt-2 mt-2 text-black dark:text-white'>
+                      <PiDevicesDuotone
+                            className=" left-8"
+                            size={25}
+                          />
+                        <span className='ml-2'>Device Pertama </span>
+                      </Button>
+                      <Button className='flex rounded-md hover:bg-blue-300 dark:hover:bg-blue-700 mt-2 mt-2 text-black dark:text-white'>
+                      <PiDevicesDuotone
+                            className=" left-8"
+                            size={25}
+                          />
+                        <span className='ml-2'>Device Kedua</span>
+                      </Button>
                     </ul>
                   </div>
                 )}
 
-                <div className="flex items-center justify-between rounded-md shadow-inner mt-5 font-regular hover:bg-gray-500 ">
-                <div className=" ml-1">
+                <div className="flex justify-between rounded-md shadow-inner mt-8 font-regular hover:bg-gray-500">
+                <div className=" ml-1 flex">
                 <RiProfileLine
-                      className="absolute top-15 left-1 hover:bg-gray-500 rounded shadow-gray-500 shadow-inner"
+                      className="flex flex-col  hover:bg-gray-500 rounded shadow-gray-500 shadow-inner mr-2"
                       size={25}
                     />
                     Profile
@@ -153,9 +137,28 @@ function Settings() {
                     </div>
                   </div>
                   {isDropdownOpen2 && (
-                    <div className="mt-2 rounded-md shadow-xl ">
-                        <ul>
-                          <button className='flex rounded-md hover:bg-gray-500' onClick={openModal2}>
+                  <div className="rounded-md shadow-xl mt-2">
+                    <ul>
+                    {isResetPasswordPopupOpen && (
+                    <div className="fixed inset-0 flex flex-col min-h-full items-center justify-center">
+                        <div className=" bg-gray-200 dark:bg-secondary_dark text-black dark:text-white p-4 rounded-lg shadow-md shadow shadow-block shadow-black">
+                          <p className='mb-5'>Apakah Anda yakin ingin mengganti sandi ?</p>
+                          <Button
+                            className="bg-red-400 dark:bg-red-900 px-4 py-2 rounded-md ml-12 hover:bg-red-600 dark:hover:bg-red-600 mt-4 text-black dark:text-white"
+                            onClick={() => setIsResetPasswordPopupOpen(false)}
+                          >
+                            Tidak
+                          </Button>
+                          <Button
+                            className="bg-blue-400 dark:bg-blue-900 px-4 py-2 rounded-md ml-20 hover:bg-blue-700 dark:hover:bg-blue-700 mt-4 text-black dark:text-white"
+                            onClick={() => setIsResetPasswordPopupOpen(false)}
+                          >
+                            Iya
+                          </Button>
+                        </div>
+                      </div>
+                    )}
+                      <Button className='flex rounded-md hover:bg-blue-300 dark:hover:bg-blue-700 mt-2 text-black dark:text-white' onClick={() => setIsResetPasswordPopupOpen(true)}>
                           <BsKey
                             className=" left-8"
                             size={25}
@@ -163,83 +166,66 @@ function Settings() {
                           <span className='ml-2'>
                             Reset Password
                           </span>
-                          </button>
-                        </ul>
-                        {isModalOpen2 && (
-                        <div className="absolute p-8 translate-x-40 top-20 rounded-md h-300 shadow-inner  bg-gray-300 text-black" style={{ width: '300px',  height:'200px'}}>
-                          <h1 className='font-bold border-b-2 border-black mt-3 text-center'>Apakah kamu yakin ingin mengganti kata sandi ?</h1>
-                          <div className="text-center ">
-                                  <ul className='flex'>
-                                  <button className=' ml-7 flex mt-10 rounded hover:bg-gray-500 ' onClick={closeModal2}>
-                                    <h1 className='shadow shadow-black w-12 rounded'>
-                                    No
-                                    </h1>
-                                    </button >
-                                    <button className=' ml-20 flex mt-10 rounded hover:bg-gray-500 '>
-                                      <h1 className='shadow shadow-black w-12 rounded'>
-                                        Yes
-                                      </h1>
-                                    </button>
-                                  </ul>
-                                </div>
-                              </div>
-                            )}
-                        <ul>
-                          <button className='flex rounded-md hover:bg-gray-500 mt-2'onClick={openModal}>
-                            <FaUserCog
+                      </Button>
+                      {isResetUsernamePopupOpen && (
+                    <div className="fixed inset-0 flex flex-col items-center justify-center ">
+                        <div className=" bg-gray-200 dark:bg-secondary_dark text-black dark:text-white p-4 rounded-lg shadow-md shadow shadow-block shadow-black">
+                          <p className='mb-5'>Change Username</p>
+                          <input className='flex mt-20 border-b-2 border-black dark:border-white outline-none bg-transparent dark:text-white ' type="text" placeholder="new username" />
+                          <Button
+                            className="bg-red-400 dark:bg-red-900 px-4 py-2 rounded-md  hover:bg-red-600 dark:hover:bg-red-600 mt-4 text-black dark:text-white"
+                            onClick={() => setIsResetUsernamePopupOpen(false)}
+                          >
+                            Batal
+                          </Button>
+                          <Button
+                            className="bg-blue-400 dark:bg-blue-900 px-4 py-2 rounded-md ml-20 hover:bg-blue-600 dark:hover:bg-blue-600 mt-4 text-black dark:text-white"
+                            onClick={() => setIsResetUsernamePopupOpen(false)}
+                          >
+                            Simpan
+                          </Button>
+                        </div>
+                      </div>
+                    )}
+                      <Button className='flex rounded-md hover:bg-blue-300 dark:hover:bg-blue-700 mt-3 text-black dark:text-white' onClick={() => setIsResetUsernamePopupOpen(true)}>
+                      <FaUserCog
                               className=" left-8"
                               size={25}
                             />
                             <span className='ml-2'>
                               Change Username
-                            </span>
-                          </button>
-                        </ul>
-                        {isModalOpen && (
-                        <div className="absolute p-8 translate-x-40 top-20 rounded-md h-300 shadow-inner  bg-gray-300 text-black" style={{ width: '300px',  height:'300px'}}>
-                          <button className=" text-2xl hover:bg-gray-500 rounded-full shadow shadow-black w-8 mb-3 items-center" onClick={closeModal}>
-                              &times;
-                            </button>
-                          <h1 className='font-bold border-b-2 border-black mt-3'>Enter a New UserName</h1>
-                          <div className="text-center ">
-                                <input className='flex mt-20 border-b-2 border-black outline-none bg-transparent text-black ' type="text" placeholder="new username" />
-                                  <button className=' flex mt-2 rounded hover:bg-gray-500 ' onClick={closeModal}>
-                                    <h1 className='shadow shadow-black w-12 rounded'>
-                                    Save
-                                    </h1>
-                                    </button>
-                                </div>
-                              </div>
-                            )}
-                          <ul>
-                          <button className='flex rounded-md hover:bg-gray-500 mt-2'onClick={openModal1}>
+                            </span> 
+                      </Button>
+                      {isResetNumberPopupOpen && (
+                    <div className="fixed inset-0 flex flex-col items-center justify-center  ">
+                        <div className=" bg-gray-200 dark:bg-secondary_dark text-black dark:text-white p-4 rounded-lg shadow-md shadow shadow-block shadow-black">
+                          <p className='mb-5'>Change Number Phone </p>
+                          <input className='flex mt-20 border-b-2 border-black dark:border-white outline-none bg-transparent dark:text-white ' type="text" placeholder="new number phone" />
+                          <Button
+                            className="bg-red-400 dark:bg-red-900 px-4 py-2 rounded-md hover:bg-red-600 dark:hover:bg-red-600 mt-4 text-black dark:text-white"
+                            onClick={() => setIsResetNumberPopupOpen(false)}
+                          >
+                            Batal
+                          </Button>
+                          <Button
+                            className="bg-blue-400 dark:bg-blue-900 px-4 py-2 rounded-md ml-20 hover:bg-blue-700 dark:hover:bg-blue-700 mt-4 text-black dark:text-white"
+                            onClick={() => setIsResetNumberPopupOpen(false)}
+                          >
+                            Simpan
+                          </Button>
+                        </div>
+                      </div>
+                    )}
+                      <Button className='flex rounded-md shadow-xl hover:bg-blue-300 dark:hover:bg-blue-700 mt-3 text-black dark:text-white'onClick={() => setIsResetNumberPopupOpen(true)}>
                           <BsTelephoneFill
                             className=" left-8"
                             size={20}
                           />
-                          <span className='ml-3'>
+                          <span className='ml-3 flex'>
                             Change Phone Number
                           </span>
-                          </button>
-                          </ul>
-                          {isModalOpen1 && (
-                        <div className="absolute p-8 translate-x-40 top-20 rounded-md h-300 shadow-inner  bg-gray-300 text-black " style={{ width: '300px',  height:'300px'}}>
-                          <button className=" text-2xl hover:bg-gray-500 rounded-full shadow shadow-black w-8 items-center " onClick={closeModal1}>
-                              &times;
-                            </button>
-                          <h1 className='font-bold border-b-2 border-black mt-3'>Enter a New Phone Number</h1>
-                          <div className="text-center ">
-                                <input className='flex mt-20 border-b-2 border-black outline-none bg-transparent text-black ' type="text" placeholder="new Phone Number" />
-                                  <button className=' flex mt-2 rounded hover:bg-gray-500 ' onClick={closeModal1}>
-                                    <h1 className='shadow shadow-black w-12 rounded'>
-                                    Save
-                                    </h1>
-                                    </button>
-                                </div>
-                              </div>
-                            )}
-                          <ul>
-                        </ul>
+                          </Button>
+                    </ul>
                   </div>
                 )}
         </div>
