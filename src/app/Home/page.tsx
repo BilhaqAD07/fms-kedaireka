@@ -14,7 +14,7 @@ import SideBarRight from "./Components/SideBarRight";
 
 const Home = () => {
     return (
-        <BaseLayout>
+       
     <div onContextMenu={(e) => e.preventDefault()}>
       {/* content */}
 
@@ -31,7 +31,7 @@ const Home = () => {
         ml={1}
         alignItems="center"
         sx={{
-border: changeThem ? "none" : "1px solid #e3e3e3",
+border : "1px solid #e3e3e3",
 padding: "2px",
 width: { xs: "280px", sm: "600px" },
 maxWidth: "600px",
@@ -502,7 +502,6 @@ maxWidth: "600px",
 
       <SideBarRight printComponentRef={printComponentRef} />
     </div>
-        </BaseLayout>
     )
 }
 
