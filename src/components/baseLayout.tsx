@@ -5,6 +5,8 @@ import Header from './Navigation/Header'
 import MainSidebar from './Navigation/MainSidebar'
 import { MenuContext } from '@/app/context/MenuContext'
 import Head from 'next/head'
+import { Provider } from 'react-redux'
+import { store } from '@/app/redux/store'
 
 interface Props {
   children: ReactNode | ReactNode[]
@@ -18,7 +20,7 @@ const BaseLayout = ({ children, pageTitle }: Props) => {
 
   const { open } = useContext(MenuContext)
   return (
-        <>
+        <Provider store={store}>
             <Head>
                 <title>FIMS |
                     {' '}
@@ -33,7 +35,7 @@ const BaseLayout = ({ children, pageTitle }: Props) => {
                     <main className="lg:ml-72 pt-14 mt-10 px-4">{children}</main>
                 </div>
             </div>
-        </>
+        </Provider>
   )
 }
 

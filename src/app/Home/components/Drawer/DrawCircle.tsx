@@ -1,13 +1,13 @@
-import React, { useEffect, useRef } from "react";
-import { Circle, Transformer } from "react-konva";
-import Konva from "konva";
+import React, { useEffect, useRef } from 'react'
+import { Circle, Transformer } from 'react-konva'
+import type Konva from 'konva'
 
 interface DrawCircleProps {
-  shapeProps: Konva.CircleConfig;
-  isSelected: boolean;
-  onSelect: () => void;
-  onChange: (newProps: Konva.CircleConfig) => void;
-  strokeColor?: string;
+  shapeProps: Konva.CircleConfig
+  isSelected: boolean
+  onSelect: () => void
+  onChange: (newProps: Konva.CircleConfig) => void
+  strokeColor?: string
 }
 
 const DrawCircle: React.FC<DrawCircleProps> = ({
@@ -15,23 +15,23 @@ const DrawCircle: React.FC<DrawCircleProps> = ({
   isSelected,
   onSelect,
   onChange,
-  strokeColor,
+  strokeColor
 }) => {
-  const shapeRef = useRef<Konva.Circle | null>(null);
-  const trRef = useRef<Konva.Transformer | null>(null);
+  const shapeRef = useRef<Konva.Circle | null>(null)
+  const trRef = useRef<Konva.Transformer | null>(null)
 
   useEffect(() => {
     if (isSelected && shapeRef.current && trRef.current) {
-      trRef.current.nodes([shapeRef.current]);
-      trRef.current.getLayer()?.batchDraw();
+      trRef.current.nodes([shapeRef.current])
+      trRef.current.getLayer()?.batchDraw()
     }
-  }, [isSelected]);
+  }, [isSelected])
 
   return (
     <>
       <Circle
         fill="transparent"
-        stroke={strokeColor || "#000"}
+        stroke={strokeColor ?? '#000'}
         onClick={onSelect}
         ref={shapeRef}
         {...shapeProps}
@@ -41,24 +41,24 @@ const DrawCircle: React.FC<DrawCircleProps> = ({
             onChange({
               ...shapeProps,
               x: e.target.x(),
-              y: e.target.y(),
-            });
+              y: e.target.y()
+            })
           }
         }}
         onTransformEnd={() => {
           if (shapeRef.current) {
             // transformer is changing scale
-            const scaleX = shapeRef.current.scaleX();
-            const scaleY = shapeRef.current.scaleY();
-            shapeRef.current.scaleX(1);
-            shapeRef.current.scaleY(1);
+            const scaleX = shapeRef.current.scaleX()
+            const scaleY = shapeRef.current.scaleY()
+            shapeRef.current.scaleX(1)
+            shapeRef.current.scaleY(1)
             onChange({
               ...shapeProps,
               x: shapeRef.current.x(),
               y: shapeRef.current.y(),
               width: shapeRef.current.width() * scaleX,
-              height: shapeRef.current.height() * scaleY,
-            });
+              height: shapeRef.current.height() * scaleY
+            })
           }
         }}
       />
@@ -66,7 +66,7 @@ const DrawCircle: React.FC<DrawCircleProps> = ({
         <Transformer ref={trRef} />
       )}
     </>
-  );
-};
+  )
+}
 
-export default DrawCircle;
+export default DrawCircle

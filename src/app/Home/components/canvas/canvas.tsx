@@ -1,74 +1,154 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-import { Stage, Layer, Circle, Star, Text } from 'react-konva'
-import { type ReactNode } from 'react'
-import React from 'react'
+import React, { useEffect, useState, useRef } from 'react'
+import { Stage, Layer, Circle, Image as KonvaImage, Line } from 'react-konva'
+import { Button } from '@mui/material'
+import type Konva from 'konva'
 
-function generateShapes () {
-  return [...Array(10)].map((_, i) => ({
-    id: i.toString(),
-    x: Math.random() * window.innerWidth,
-    y: Math.random() * window.innerHeight,
-    rotation: Math.random() * 180,
-    isDragging: false
-  }))
+interface LineType {
+  points: number[]
 }
 
-const INITIAL_STATE = generateShapes()
+function Canvas () {
+  const [image, setImage] = useState<HTMLImageElement | undefined>(undefined)
+  const [drawLine, setDrawLine] = useState<LineType | undefined>()
+  const [lines, setLines] = useState<LineType[]>([])
 
-function Canvas (Props: any) {
-  const [stars, setStars] = React.useState(INITIAL_STATE)
-  const handleDragStart = (e: any) => {
-    const id = e.target.id()
-    setStars(
-      stars.map((star) => {
-        return {
-          ...star,
-          isDragging: star.id === id
-        }
+  // Definisikan variabel yang dibutuhkan untuk toDataURL
+  const mimeType = 'image/png' // Ganti sesuai kebutuhan Anda
+  const pixelRatio = 1 // Ganti sesuai kebutuhan Anda
+  const width = window.innerWidth // Ganti sesuai kebutuhan Anda
+  const height = window.innerHeight
+  const x = 0
+  const y = 0
+
+  // Saat gambar di-load, set image state
+  useEffect(() => {
+    const URL =
+      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTinrXdnE3zzQdKnvY1eXy8LLCgKBh6h5Al_g&usqp=CAU'
+
+    const newImage = new window.Image()
+    newImage.src = URL
+
+    newImage.addEventListener('load', () => {
+      setImage(newImage)
+    })
+
+    // Hapus event listener saat komponen unmount
+    return () => {
+      newImage.removeEventListener('load', () => {
+        setImage(newImage)
       })
-    )
+    }
+  }, [])
+
+  // Saat tombol mouse ditekan, mulai menggambar
+  const handleOnMouseDown = (e: any) => {
+    const position = e.target.getStage().getPointerPosition()
+    const { x, y } = position
+    setDrawLine({
+      points: [x, y]
+    })
   }
-  const handleDragEnd = (e: any) => {
-    setStars(
-      stars.map((star) => {
-        return {
-          ...star,
-          isDragging: false
-        }
-      })
-    )
+
+  // Saat mouse digerakkan, gambar jalur
+  const handleOnMouseMove = (e: any) => {
+    if (!drawLine) return
+    const position = e.target.getStage().getPointerPosition()
+    const { x, y } = position
+    setDrawLine({
+      points: [...drawLine.points, x, y]
+    })
+  }
+
+  // Saat tombol mouse dilepas, selesaikan gambar dan tambahkan ke array garis
+  const handleMouseUp = () => {
+    if (!drawLine) return
+    setDrawLine(undefined)
+    setLines([...lines, { points: drawLine.points }])
+  }
+
+  const stageRef = useRef<Konva.Stage>(null)
+
+  const handleOnSubmit = () => {
+    const temp = stageRef.current
+
+    // Dapatkan URL data
+    const result = temp.toDataURL({
+      mimeType,
+      pixelRatio,
+      width,
+      height,
+      x,
+      y
+    })
+
+    // Tampilkan URL data di console (untuk pengujian)
+    console.log('URL data:', result)
+
+    // Di sini Anda dapat menyimpan atau menggunakannya sesuai kebutuhan Anda
+    // Contoh: Simpan gambar ke sistem file
+    const a = document.createElement('a')
+    a.href = result
+    a.download = 'canvas_image.png' // Ganti nama file sesuai kebutuhan Anda
+    a.click()
   }
 
   return (
-    <Stage className='bg-white border border-black dark:border-white dark:bg-secondary_dark overflow-x-hidden' width={window.innerWidth} height={window.innerHeight}>
-      <Layer>
-        <Text text="Try to drag a star" />
-        {stars.map((star) => (
-          <Star
-            key={star.id}
-            id={star.id}
-            x={star.x}
-            y={star.y}
-            numPoints={5}
-            innerRadius={20}
-            outerRadius={40}
-            fill="#89b717"
-            opacity={0.8}
+    <>
+      <Button onClick={handleOnSubmit}>Simpan</Button>
+      <Stage
+        className='border overflow-scroll border-black dark:border-white'
+        width={window.innerWidth}
+        height={window.innerHeight}
+        onMouseDown={handleOnMouseDown}
+        onMouseMove={handleOnMouseMove}
+        onMouseUp={handleMouseUp}
+        ref={stageRef}
+      >
+        <Layer>
+          {/* Circle yang dapat di-drag */}
+          <Circle
+            x={100}
+            y={200}
+            radius={50}
+            fill='red'
             draggable
-            rotation={star.rotation}
-            shadowColor="black"
-            shadowBlur={10}
-            shadowOpacity={0.6}
-            shadowOffsetX={star.isDragging ? 10 : 5}
-            shadowOffsetY={star.isDragging ? 10 : 5}
-            scaleX={star.isDragging ? 1.2 : 1}
-            scaleY={star.isDragging ? 1.2 : 1}
-            onDragStart={handleDragStart}
-            onDragEnd={handleDragEnd}
           />
-        ))}
-      </Layer>
-    </Stage>
+
+          {/* Gambar yang dapat di-drag */}
+          {image && (
+            <KonvaImage
+              image={image}
+              x={100}
+              y={200}
+              width={200}
+              height={150}
+              draggable
+            />
+          )}
+
+          {lines.map((line, index) => (
+            <Line
+              key={index}
+              points={line.points}
+              fill='black'
+              stroke='black'
+              lineCap='round'
+              draggable
+            />
+          ))}
+
+          {drawLine && (
+            <Line
+              points={drawLine.points}
+              fill='black'
+              stroke='black'
+              lineCap='round'
+              draggable
+            />
+          )}
+        </Layer>
+      </Stage>
+    </>
   )
 }
 

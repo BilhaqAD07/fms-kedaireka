@@ -1,71 +1,85 @@
-import React, { useEffect, useRef } from "react";
-import { Rect, Transformer } from "react-konva";
+import React, { useEffect, useRef } from 'react'
+import { Rect, Transformer } from 'react-konva'
+import type Konva from 'konva'
 
 interface DrawRectangleProps {
-  x: any;
-  y: any;
-  width: any;
-  height: any;
-  isSelected: any;
-  onSelect: () => any;
-  onChange: (newProps: { x: any; y: any }) => void;
-  strokeColor?: any;
+  shapeProps: Konva.RectConfig
+  isSelected: boolean
+  onSelect: () => void
+  onChange: (newProps: Konva.RectConfig) => void
+  strokeColor?: string
 }
 
 const DrawRectangle: React.FC<DrawRectangleProps> = ({
-  x,
-  y,
-  width,
-  height,
+  shapeProps,
   isSelected,
   onSelect,
   onChange,
-  strokeColor = "#000",
+  strokeColor
 }) => {
-  const shapeRef = useRef<any>();
-  const trRef = useRef<any>();
+  const shapeRef = useRef<Konva.Rect>(null)
+  const trRef = useRef<Konva.Transformer>(null)
 
   useEffect(() => {
     if (isSelected) {
       // attach transformer manually
-      trRef.current.setNode(shapeRef.current);
-      trRef.current.getLayer().batchDraw();
+      if (trRef.current && shapeRef.current) {
+        trRef.current.nodes([shapeRef.current])
+        trRef.current.getLayer()?.batchDraw()
+      }
     }
-  }, [isSelected]);
+  }, [isSelected])
 
   return (
     <>
       <Rect
         onClick={onSelect}
         ref={shapeRef}
-        x={x}
-        y={y}
-        width={width}
-        height={height}
+        {...shapeProps}
         draggable
-        stroke={strokeColor}
+        stroke={strokeColor ?? '#000'}
         onDragEnd={(e) => {
-          onChange({
-            x: e.target.x(),
-            y: e.target.y(),
-          });
+          const node = shapeRef.current
+          if (node) {
+            onChange({
+              ...shapeProps,
+              x: node.x(),
+              y: node.y()
+            })
+          }
         }}
-        onTransformEnd={(e) => {
+        onTransformEnd={() => {
           // transformer is changing scale
-          const node = shapeRef.current;
-          const scaleX = node.scaleX();
-          const scaleY = node.scaleY();
-          node.scaleX(1);
-          node.scaleY(1);
-          onChange({
-            x: node.x(),
-            y: node.y(),
-          });
+          const node = shapeRef.current
+          if (node) {
+            const scaleX = node.scaleX()
+            const scaleY = node.scaleY()
+            node.scaleX(1)
+            node.scaleY(1)
+            onChange({
+              ...shapeProps,
+              x: node.x(),
+              y: node.y(),
+              width: node.width() * scaleX,
+              height: node.height() * scaleY
+            })
+          }
         }}
       />
-      {isSelected && <Transformer ref={trRef} />}
+      {isSelected && (
+        <Transformer
+          ref={trRef}
+          boundBoxFunc={(oldBox, newBox) => {
+            // Limit the transformer to not scale too small
+            if (newBox.width < 5 || newBox.height < 5) {
+              return oldBox
+            }
+            return newBox
+          }}
+        />
+      )}
     </>
-  );
-};
+  )
+}
 
-export default DrawRectangle;
+export default DrawRectangle
