@@ -1,16 +1,1 @@
-'use client'
-
-import BaseLayout from '@/components/baseLayout'
-import React from 'react'
-
-function Chart() {
-  return (
-    <BaseLayout>
-      <div>
-        <h2>CHART PAGE</h2>
-      </div>
-    </BaseLayout>
-  )
-}
-
-export default Chart
+rifrlll

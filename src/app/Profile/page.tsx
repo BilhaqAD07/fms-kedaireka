@@ -1,44 +1,41 @@
 'use client'
 
-import React from "react";
-import { Card, List, Typography } from "@mui/material";
+import BaseLayout from '@/components/baseLayout'
+import React from 'react'
+import { Card, Typography, List } from "@mui/material";
 import ListItemButton from "@mui/material/ListItemButton";
-import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import AccountBoxIcon from "@mui/icons-material/AccountBox";
 import EmailIcon from "@mui/icons-material/Email";
 import LocalPhoneIcon from '@mui/icons-material/LocalPhone';
-import BaseLayout from "@/components/baseLayout";
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
 function Profile() {
   return (
     <BaseLayout>
-      <div className="flex justify-center items-center min-h-full rounded-lg mx-4 p-4">
-          <Card className='flex p-4 flex-col h-80 dark:bg-secondary_dark text-black dark:text-white w-screen'
-          >
-            <Typography className="font-bold text-center uppercase">My Profile</Typography>
-            <List>
-              <ListItemButton>
-                <ListItemIcon>
-                  <AccountBoxIcon />
-                </ListItemIcon>
-                <ListItemText primary="INI UDIN" />
-              </ListItemButton>
-              <ListItemButton>
-                <ListItemIcon>
-                  <EmailIcon />
-                </ListItemIcon>
-                <ListItemText primary="UDIN@GMAIL.COM" />
-              </ListItemButton>
-              <ListItemButton>
-                <ListItemIcon>
-                  <LocalPhoneIcon />
-                </ListItemIcon>
-                <ListItemText primary="+62813-1678-3223" />
-              </ListItemButton>
-            </List>
-          </Card>
-      </div>
+    <div className="flex justify-center items-center min-h-full mx-auto p-50">
+    <Card className='flex p-0 mx-auto flex-col dark:bg-secondary_dark text-black dark:text-white w-[400px] h-[300px] min-width-[600px] place-content-center text-center'>
+    <AccountCircleIcon
+      className=" mx-auto flex justify-center absolute -top-14 translate-y-40 ml-40 w-[70px] h-[60px]"
+      />
+        <List>
+          
+          <ListItemButton className='gap-4'>
+              <AccountBoxIcon />
+              <ListItemText primary="Name" />
+          </ListItemButton>
+          <ListItemButton className='gap-4'>
+              <EmailIcon />
+
+            <ListItemText primary= "kloping@gmail.com" />
+          </ListItemButton>
+          <ListItemButton className='gap-4'>
+              <LocalPhoneIcon />
+            <ListItemText primary="+6281316783223" />
+          </ListItemButton>
+        </List>
+    </Card>
+    </div>
     </BaseLayout>
   )
 }
