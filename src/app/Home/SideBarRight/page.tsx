@@ -6,8 +6,9 @@ import { Button, Drawer, Popover } from '@mui/material';
 import { BsFillArrowLeftSquareFill } from 'react-icons/bs';
 import { GiCancel } from 'react-icons/gi';
 import { AiOutlineCaretDown } from 'react-icons/ai';
-import Design from '../Component/Design/page';
-import Devices from '../Component/Devices/page';
+
+import Design from './Component/Design/page';
+import Devices from './Component/Devices/page';
 
 const SideBarRight = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -57,12 +58,12 @@ const SideBarRight = () => {
           <div className="p-4 bg-gray-300 dark:bg-secondary_dark">
             <div className="flex bg-red-500 dark:bg-red-800 min-z-screen rounded-full">
               <Button onClick={() => setIsSidebarOpen(false)}>
-                <GiCancel size={20} /> <h1 className="ml-2 text-blue font-bold">Close</h1>
+                <GiCancel size={20} /> <h1 className="bg-primary hover:bg-primary-dark text-white font-bold rounded-full transition transform duration-300 ease-in-out hover:scale-110 ml-2">Close</h1>
               </Button>
             </div>
             <div className="mt-3">
               <Button
-                className="flex flex-cool hover:bg-gray-300 dark:hover:bg-gray-500 text-black dark:text-white border-black dark:border-white shadow-inner shadow-black dark:shadow-white"
+                className="flex flex-cool hover:bg-gray-300 dark:hover:bg-gray-500 text-black dark:text-white bg-white dark:bg-slate-800 hover:bg-primary-dark font-bold py-2 px-4 rounded-full transition transform duration-300 ease-in-out hover:scale-110"
                 variant="outlined"
                 onClick={handleClick}
                 aria-describedby={id}
