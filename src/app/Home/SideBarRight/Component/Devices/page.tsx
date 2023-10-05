@@ -8,6 +8,7 @@ import ListItemText from "@mui/material/ListItemText";
 import PlaylistAddIcon from "@mui/icons-material/PlaylistAdd";
 
 import NewGroup from "../NewGroup/page";
+import NewDevices from "../NewDevices/page";
 
 import ListDevices from "../List/ListDevices/page";
 import ListGroups from "../List/ListGroups/page";
@@ -20,7 +21,7 @@ const Devices = () => {
   const [openListLayout, setOpenListLayout] = useState(false);
 
   const [openPopUpNewGroup, setOpenPopUpNewGroup] = useState(false);
-  const [openPopUpNewDevice, setOpenPopUpNewDevice] = useState(false);
+  const [openPopUpNewDevices, setOpenPopUpNewDevices] = useState(false);
 
   return (
     <main className="bg-white dark:bg-slate-500  min-h-screen">
@@ -28,6 +29,11 @@ const Devices = () => {
         <NewGroup
         openDialog={openPopUpNewGroup}
         setOpenDialog={setOpenPopUpNewGroup}
+      />
+
+      <NewDevices
+        openDialog={openPopUpNewDevices}
+        setOpenDialog={setOpenPopUpNewDevices}
       />
 
       <ListDevices
@@ -48,7 +54,7 @@ const Devices = () => {
 
       <Divider />
       <ListItemButton
-        onClick={() => setOpenPopUpNewDevice(!openPopUpNewDevice)}
+        onClick={() => setOpenPopUpNewDevices(!openPopUpNewDevices)}
       >
         <ListItemIcon>
           <PlaylistAddIcon />

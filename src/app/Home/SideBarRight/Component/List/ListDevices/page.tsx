@@ -18,6 +18,7 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import { Button } from "@mui/material";
+import EmptyLayout from "../../EmpityLayout/page";
 
 const ListDevices = ({ onOpen, open }) => {
     const [openPopUp, setOpenPopUp] = useState(false);
@@ -36,7 +37,7 @@ const ListDevices = ({ onOpen, open }) => {
     <List>
         <Stack>
             <div className="ml-2 mb-2 mt-2 mr-2">
-                Daftar Devices akan dibuat disini
+                <EmptyLayout/>
             </div>
         </Stack>
     </List>
