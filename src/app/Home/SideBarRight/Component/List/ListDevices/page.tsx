@@ -26,13 +26,13 @@ const ListDevices = ({ onOpen, open }) => {
     
     return(
 <>
-<div className="flex cursor-pointer px-4 py-4 hover:bg-gray-200 hover:bg-opacity-60 w-auto min-h-[min-height]" onClick={onOpen}>
+<Button className="capitalize text-black flex cursor-pointer px-4 py-4 hover:bg-gray-200 hover:bg-opacity-60 w-auto min-h-[min-height]" onClick={onOpen}>
     <ListItemIcon>
         <FormatListBulletedIcon/>
     </ListItemIcon>
-    <ListItemText primary="Devices"/>
+    <ListItemText className="mr-5" primary="Devices"/>
     { open ? <ExpandLess/> : <ExpandMore/> }
-</div>
+</Button>
 <Collapse in={open} timeout='auto' unmountOnExit>
     <List>
         <Stack>

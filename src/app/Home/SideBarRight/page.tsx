@@ -3,7 +3,7 @@
 import React from 'react';
 import { useState } from 'react';
 import { Button, Drawer, Popover } from '@mui/material';
-import { BsFillArrowLeftSquareFill } from 'react-icons/bs';
+import { BsFillArrowLeftSquareFill, BsFillArrowRightSquareFill } from 'react-icons/bs';
 import { GiCancel } from 'react-icons/gi';
 import { AiOutlineCaretDown } from 'react-icons/ai';
 
@@ -50,21 +50,20 @@ const SideBarRight = () => {
 
   return (
     <main>
-      <div className="flex justify-end text-black dark:text-white">
-        <Button onClick={toggleSidebar}>
-          <BsFillArrowLeftSquareFill size={30} />
-        </Button>
+      <div className="flex justify-end text-black dark:text-white transition transform duration-300 ease-in-out hover:scale-110">
+      <Button className='rounded text-primary_blue dark:text-gray-400 hover:bg-primary_blue  hover:text-white dark:hover:text-[#213140] focus:outline-none focus:bg-primary_blue dark:focus:bg-black focus:text-white dark:focus:text-[#213140] transition duration-50 ease-in-out' onClick={toggleSidebar}>
+        <BsFillArrowLeftSquareFill size={30} />
+      </Button>
         <Drawer anchor="right" open={isSidebarOpen} onClose={() => setIsSidebarOpen(false)}>
-          <div className="p-4 bg-gray-300 dark:bg-secondary_dark">
-            <div className="flex bg-red-500 dark:bg-red-800 min-z-screen rounded-full">
-              <Button onClick={() => setIsSidebarOpen(false)}>
-                <GiCancel size={20} /> <h1 className="bg-primary hover:bg-primary-dark text-white font-bold rounded-full transition transform duration-300 ease-in-out hover:scale-110 ml-2">Close</h1>
+          <div className="flex  py-4 px-0 bg-gray-300 dark:bg-secondary_dark">
+            <div className="flex">
+              <Button className='text-red-500 dark:text-red-800 transition transform duration-400 ease-in-out hover:scale-110' onClick={() => setIsSidebarOpen(false)}>
+                <BsFillArrowRightSquareFill size={30} /> 
               </Button>
             </div>
-            <div className="mt-3">
+            <div className=" mr-4">
               <Button
-                className="flex flex-cool hover:bg-gray-300 dark:hover:bg-gray-500 text-black dark:text-white bg-white dark:bg-slate-800 hover:bg-primary-dark font-bold py-2 px-4 rounded-full transition transform duration-300 ease-in-out hover:scale-110"
-                variant="outlined"
+                className="flex  hover:bg-gray-300 dark:hover:bg-gray-500 text-black dark:text-white bg-white dark:bg-zinc-800 hover:bg-primary-dark font-bold py-2 px-4 rounded-full transition transform duration-300 ease-in-out hover:scale-110 shadow shadow-stone-900 dark:shadow-stone-500"
                 onClick={handleClick}
                 aria-describedby={id}
               >
