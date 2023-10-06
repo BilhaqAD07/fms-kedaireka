@@ -24,7 +24,7 @@ const Devices = () => {
   const [openPopUpNewDevices, setOpenPopUpNewDevices] = useState(false);
 
   return (
-    <main className="bg-white dark:bg-slate-500  min-h-screen">
+    <main className="bg-white dark:bg-neutral-700  min-h-screen">
 
         <NewGroup
         openDialog={openPopUpNewGroup}
