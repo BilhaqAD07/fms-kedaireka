@@ -8,6 +8,10 @@ interface DrawRectangleProps {
   onSelect: () => void
   onChange: (newProps: Konva.RectConfig) => void
   strokeColor?: string
+  stageEl: React.MutableRefObject<any> // Add stageEl prop
+  layerEl: React.MutableRefObject<any> // Add layerEl prop
+  shapesSelected: React.MutableRefObject<any> // Add shapesSelected prop
+  selectShapeDelete: React.MutableRefObject<any> // Add selectShapeDelete prop
 }
 
 const DrawRectangle: React.FC<DrawRectangleProps> = ({

@@ -1,19 +1,19 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
-    shapeSelected: null,
-};
+  shapeSelected: null
+}
 
 export const layoutSlice = createSlice({
-    name:"shape",
-    initialState,
-    reducers: {
-        selectedShape: (state, action) => {
-            state.shapeSelected = action.payload;
-        },
-    },
-});
+  name: 'shape',
+  initialState,
+  reducers: {
+    selectedShape: (state, action) => {
+      state.shapeSelected = action.payload
+    }
+  }
+})
 
-export const { selectedShape } = layoutSlice.actions;
+export const { selectedShape } = layoutSlice.actions
 
-export default layoutSlice.reducer;
+export default layoutSlice.reducer

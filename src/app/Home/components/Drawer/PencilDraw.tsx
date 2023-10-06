@@ -8,10 +8,12 @@ interface PencilDrawProps {
   mode: 'brush' | 'eraser'
   color: string
   straight?: boolean
+  name: string
 }
 
-const PencilDraw: React.FC<PencilDrawProps> = ({
+export const PencilDraw: React.FC<PencilDrawProps> = ({
   stage,
+  name,
   layer,
   mode,
   color,
@@ -105,5 +107,3 @@ const PencilDraw: React.FC<PencilDrawProps> = ({
 
   return null
 }
-
-export default PencilDraw

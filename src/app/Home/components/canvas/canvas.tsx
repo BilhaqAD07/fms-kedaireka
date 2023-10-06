@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react'
-import { Stage, Layer, Circle, Image as KonvaImage, Line } from 'react-konva'
+import { Stage, Layer, Rect, Circle, Image as KonvaImage, Line } from 'react-konva'
 import { Button } from '@mui/material'
 import type Konva from 'konva'
 
@@ -7,18 +7,22 @@ interface LineType {
   points: number[]
 }
 
+function downloadURI (uri: any, name: any) {
+  const link = document.createElement('a')
+  link.download = name
+  link.href = uri
+  document.body.appendChild(link)
+  link.click()
+  document.body.removeChild(link)
+}
+
 function Canvas () {
+  const width = window.innerWidth
+  const height = window.innerHeight
+
   const [image, setImage] = useState<HTMLImageElement | undefined>(undefined)
   const [drawLine, setDrawLine] = useState<LineType | undefined>()
   const [lines, setLines] = useState<LineType[]>([])
-
-  // Definisikan variabel yang dibutuhkan untuk toDataURL
-  const mimeType = 'image/png' // Ganti sesuai kebutuhan Anda
-  const pixelRatio = 1 // Ganti sesuai kebutuhan Anda
-  const width = window.innerWidth // Ganti sesuai kebutuhan Anda
-  const height = window.innerHeight
-  const x = 0
-  const y = 0
 
   // Saat gambar di-load, set image state
   useEffect(() => {
@@ -69,42 +73,23 @@ function Canvas () {
   const stageRef = useRef<Konva.Stage>(null)
 
   const handleOnSubmit = () => {
-    const temp = stageRef.current
-
-    // Dapatkan URL data
-    const result = temp.toDataURL({
-      mimeType,
-      pixelRatio,
-      width,
-      height,
-      x,
-      y
-    })
-
-    // Tampilkan URL data di console (untuk pengujian)
-    console.log('URL data:', result)
-
-    // Di sini Anda dapat menyimpan atau menggunakannya sesuai kebutuhan Anda
-    // Contoh: Simpan gambar ke sistem file
-    const a = document.createElement('a')
-    a.href = result
-    a.download = 'canvas_image.png' // Ganti nama file sesuai kebutuhan Anda
-    a.click()
+    const uri = stageRef.current?.toDataURL()
+    downloadURI(uri, 'stage.jpg')
   }
 
   return (
-    <>
+    <div className='border overflow-scroll bg-white border-black dark:border-white'>
       <Button onClick={handleOnSubmit}>Simpan</Button>
       <Stage
-        className='border overflow-scroll border-black dark:border-white'
-        width={window.innerWidth}
-        height={window.innerHeight}
-        onMouseDown={handleOnMouseDown}
-        onMouseMove={handleOnMouseMove}
-        onMouseUp={handleMouseUp}
-        ref={stageRef}
-      >
-        <Layer>
+              width={window.innerWidth}
+              height={window.innerHeight}
+              ref={stageRef}
+              style={{ backgroundColor: '#FFF' }}
+              onMouseDown={handleOnMouseDown}
+              onMouseMove={handleOnMouseMove}
+              onMouseUp={handleMouseUp}
+            >
+              <Layer>
           {/* Circle yang dapat di-drag */}
           <Circle
             x={100}
@@ -114,17 +99,16 @@ function Canvas () {
             draggable
           />
 
-          {/* Gambar yang dapat di-drag */}
-          {image && (
-            <KonvaImage
-              image={image}
-              x={100}
-              y={200}
-              width={200}
-              height={150}
-              draggable
-            />
-          )}
+          <Rect x={0} y={0} width={80} height={80} fill="red" draggable />
+          <Rect x={width - 80} y={0} width={80} height={80} fill="red" draggable />
+          <Rect
+            x={width - 80}
+            y={height - 80}
+            width={80}
+            height={80}
+            fill="red" draggable
+          />
+          <Rect x={0} y={height - 80} width={80} height={80} fill="red" draggable />
 
           {lines.map((line, index) => (
             <Line
@@ -147,8 +131,8 @@ function Canvas () {
             />
           )}
         </Layer>
-      </Stage>
-    </>
+            </Stage>
+    </div>
   )
 }
 
