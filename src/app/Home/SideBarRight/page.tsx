@@ -4,7 +4,6 @@ import React from 'react';
 import { useState } from 'react';
 import { Button, Drawer, Popover } from '@mui/material';
 import { BsFillArrowLeftSquareFill, BsFillArrowRightSquareFill } from 'react-icons/bs';
-import { GiCancel } from 'react-icons/gi';
 import { AiOutlineCaretDown } from 'react-icons/ai';
 
 import Design from './Component/Design/page';
