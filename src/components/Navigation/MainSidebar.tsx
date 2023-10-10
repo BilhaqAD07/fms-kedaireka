@@ -1,24 +1,22 @@
-
 import { useContext } from 'react'
-import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
-import LeaderboardOutlinedIcon from '@mui/icons-material/LeaderboardOutlined';
-import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
-import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
-import CloseIcon from '@mui/icons-material/Close';
-import Logout from "@mui/icons-material/Logout";
-import Link from "next/link";
-import { Button, Typography } from '@mui/material'
-import { MenuContext } from '@/app/context/MenuContext';
+import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined'
+import LeaderboardOutlinedIcon from '@mui/icons-material/LeaderboardOutlined'
+import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined'
+import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined'
+import CloseIcon from '@mui/icons-material/Close'
+import Logout from '@mui/icons-material/Logout'
+import Link from 'next/link'
+import { Typography } from '@mui/material'
+import { MenuContext } from '@/app/context/MenuContext'
 
+function MainSidebar () {
+  const { open, toggle } = useContext(MenuContext)
 
-function MainSidebar() {
-    const {open, toggle} = useContext(MenuContext)
+  const closeSideBarHandler = () => {
+    toggle()
+  }
 
-    const closeSideBarHandler = () => {
-        toggle()
-    }
-
-    return (
+  return (
         <>
             <aside className={`bg-primary_blue top-4 left-4 lg:fixed lg:block lg:top-24 lg:left-4 rounded-lg overflow-hidden transition-all duration-200 ${
                 open ? 'w-60 p-4 z-50 block fixed' : 'w-0 hidden'
@@ -50,7 +48,7 @@ function MainSidebar() {
                 </ul>
             </aside>
         </>
-    )
+  )
 }
 
 export default MainSidebar
