@@ -1,24 +1,24 @@
 'use client'
-import { createContext, useState, ReactNode } from 'react';
+import { createContext, useState, type ReactNode } from 'react'
 
 const initialValue = {
-    open: false,
-    toggle: () => {},
+  open: false,
+  toggle: () => {}
 }
-export const MenuContext = createContext(initialValue);
+export const MenuContext = createContext(initialValue)
 
 interface Props {
-    children: ReactNode | ReactNode[];
+  children: ReactNode | ReactNode[]
 }
 
 const MenuContextProvider = ({ children }: Props) => {
-    const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(false)
 
-    const toggle = () => {
-        setOpen((prev) => !prev);
-    };
+  const toggle = () => {
+    setOpen((prev) => !prev)
+  }
 
-    return <MenuContext.Provider value={{ open, toggle }}>{children}</MenuContext.Provider>;
+  return <MenuContext.Provider value={{ open, toggle }}>{children}</MenuContext.Provider>
 }
 
-export default MenuContextProvider;
+export default MenuContextProvider
