@@ -24,7 +24,7 @@ const Profile = () => {
     };
 
     return (
-        <BaseLayout>
+        <BaseLayout pageTitle="Profile">
         <main>
             <div className="flex justify-end">
                 <Button  onClick={toggleSidebar}>

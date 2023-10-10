@@ -3,8 +3,7 @@
 import React from 'react';
 import { useState } from 'react';
 import { Button, Drawer, Popover } from '@mui/material';
-import { BsFillArrowLeftSquareFill } from 'react-icons/bs';
-import { GiCancel } from 'react-icons/gi';
+import { BsFillArrowLeftSquareFill, BsFillArrowRightSquareFill } from 'react-icons/bs';
 import { AiOutlineCaretDown } from 'react-icons/ai';
 
 import Design from './Component/Design/page';
@@ -55,13 +54,13 @@ const SideBarRight = () => {
           <BsFillArrowLeftSquareFill size={30} />
         </Button>
         <Drawer anchor="right" open={isSidebarOpen} onClose={() => setIsSidebarOpen(false)}>
-          <div className="p-4 bg-gray-300 dark:bg-secondary_dark">
-            <div className="flex bg-red-500 dark:bg-red-800 min-z-screen rounded-full">
-              <Button onClick={() => setIsSidebarOpen(false)}>
-                <GiCancel size={20} /> <h1 className="bg-primary hover:bg-primary-dark text-white font-bold rounded-full transition transform duration-300 ease-in-out hover:scale-110 ml-2">Close</h1>
+          <div className="flex  py-4 px-0 bg-gray-300 dark:bg-secondary_dark">
+          <div className="flex">
+              <Button className='flex text-red-500 dark:text-red-800 transition transform duration-400 ease-in-out hover:scale-110' onClick={() => setIsSidebarOpen(false)}>
+                <BsFillArrowRightSquareFill size={30} /> 
               </Button>
             </div>
-            <div className="mt-3">
+            <div className="ml-3 mr-3">
               <Button
                 className="flex flex-cool hover:bg-gray-300 dark:hover:bg-gray-500 text-black dark:text-white bg-white dark:bg-slate-800 hover:bg-primary-dark font-bold py-2 px-4 rounded-full transition transform duration-300 ease-in-out hover:scale-110"
                 variant="outlined"
