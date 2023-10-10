@@ -1,4 +1,3 @@
-'use client'
 import BaseLayout from '@/components/baseLayout'
 import dynamic from 'next/dynamic'
 
