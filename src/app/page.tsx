@@ -1,11 +1,13 @@
 'use client'
-import React from "react";
-import SideBarRight from "./Home/SideBarRight/page";
+import React from 'react'
+import SideBarRight from './Home/SideBarRight/page'
+import BaseLayout from '@/components/baseLayout'
+import { Container } from '@mui/material'
 
 const Home = () => {
-    return (
-        <BaseLayout>
-            <Container className="">
+  return (
+        <BaseLayout pageTitle='home'>
+            <Container>
             <div className="flex justify-end">
       <SideBarRight />
         </div>
