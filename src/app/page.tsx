@@ -17,7 +17,7 @@ const Home = () => {
         <BaseLayout>
             <Container className="">
             <div className="flex justify-end">
-      <SideBarRight />
+    <SideBarRight />
         </div>
             </Container>
         </BaseLayout>
