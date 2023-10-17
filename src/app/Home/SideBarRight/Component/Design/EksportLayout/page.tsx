@@ -1,10 +1,9 @@
 'use client'
 
-import React from 'react';
+
 import React, { useState } from "react";
 import { Stack, TextField, Button } from "@mui/material";
 import ListItemButton from "@mui/material/ListItemButton";
-import ListItemText from "@mui/material/ListItemText";
 import Collapse from "@mui/material/Collapse";
 
 
@@ -35,14 +34,14 @@ const ExportLayout = ({ componentRef }) => {
 
   return (
     <>
-      <ListItemButton onClick={() => setOpenExportList(!openExportList)}>
-        <ListItemText sx={{ fontWeight: "bold" }} primary="Export Layout" />
-      </ListItemButton>
+      <Button onClick={() => setOpenExportList(!openExportList)}>
+        <ListItemButton sx={{ fontWeight: "bold" }} primary="Export Layout" />
+      </Button>
       <Collapse
         in={openExportList}
         timeout="auto"
         unmountOnExit
-        sx={{ p: 1, mt: 2 }}
+        sx={{ p: 5, mt: 2 }}
       >
         <Stack direction="row" justifyContent="center" spacing={1} mb={2}>
           <TextField

@@ -97,14 +97,6 @@ const Design = ({ printComponentRef })=>{
         </Select>
         </FormControl> { (
         <div style ={{ paddingLeft: "10px", paddingRight: "10px" }}>
-          <Stack direction="row" justifyContent="space-between">
-            <p> X : {Math.round(shapeProperties?.x)}</p>
-            <p> Y : {Math.round(shapeProperties?.y)}</p>
-          </Stack>
-          <Stack direction="row" justifyContent="space-between">
-            <p>W : {Math.round(shapeProperties?.width)}</p>
-            <p>H : {Math.round(shapeProperties?.height)}</p>
-          </Stack>
 
           <Stack
             direction="row"
@@ -116,7 +108,6 @@ const Design = ({ printComponentRef })=>{
             <Stack direction="row" alignItems="center" spacing={2}>
               <p>{shapeProperties?.fill}</p>
             </Stack>
-            <Typography>Fill</Typography>
           </Stack>
           <Divider />
           <Stack
@@ -129,7 +120,6 @@ const Design = ({ printComponentRef })=>{
             <Stack direction="row" alignItems="center" spacing={2}>
               <p>{shapeProperties?.color}</p>
             </Stack>
-            <Typography>Stroke</Typography>
           </Stack>
         </div>
         )
