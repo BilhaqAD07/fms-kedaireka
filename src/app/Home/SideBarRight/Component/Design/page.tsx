@@ -131,8 +131,7 @@ const Design = ({ printComponentRef })=>{
           </Stack>
         </div>
         )
-        } <
-        ExportLayout componentRef = { printComponentRef }
+        } < ExportLayout componentRef = { printComponentRef }
     /> </>
     )
 
