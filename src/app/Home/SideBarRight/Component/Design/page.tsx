@@ -124,7 +124,8 @@ const Design = ({ printComponentRef })=>{
         </div>
         )
         } < ExportLayout componentRef = { printComponentRef }
-    /> </>
+    /> 
+    </>
     )
 
 }

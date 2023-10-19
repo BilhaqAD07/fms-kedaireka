@@ -8,8 +8,8 @@ import {Button, Popover, TextField,} from "@mui/material";
 import { DateTimePicker } from "@mui/x-date-pickers/DateTimePicker";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
-import { Box } from "@mui/system";
-
+import DownloadButton from './DownloadButton/page';
+import Diagram from './Diagram/page';
 function Chart() {
 
   const [anchorEl, setAnchorEl] = useState(null);
@@ -171,21 +171,11 @@ function Chart() {
         >
           <div className='flex flex-col bg-gray-200 dark:bg-secondary_dark text-black dark:text-white' 
           style={{ padding: '16px' }}>
-            <Button className='hover:bg-gray-300 dark:hover:bg-gray-500 text-black dark:text-white' 
-            >
-              csv
-            </Button>
-            <Button className='hover:bg-gray-300 dark:hover:bg-gray-500 text-black dark:text-white' 
-            >
-              txt
-            </Button>
-            <Button className='hover:bg-gray-300 dark:hover:bg-gray-500 text-black dark:text-white' 
-          >
-              xlsx
-            </Button>
+            <DownloadButton/>
           </div>
         </Popover>
     </main>
+    <Diagram/>
     </BaseLayout>
   )
 }

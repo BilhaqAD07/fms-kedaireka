@@ -1,9 +1,9 @@
 'use client'
 
-
 import React, { useState } from "react";
 import { Stack, TextField, Button } from "@mui/material";
 import ListItemButton from "@mui/material/ListItemButton";
+import ListItemText from "@mui/material/ListItemText";
 import Collapse from "@mui/material/Collapse";
 
 
@@ -14,7 +14,7 @@ import Select from "@mui/material/Select";
 const ExportLayout = ({ componentRef }) => {
   const [exportTypeFile, setExportTypeFile] = useState("png");
   const [fileName, setFileName] = useState("untitled");
-  const [openExportList, setOpenExportList] = useState(true);
+  const [openExportList, setOpenExportList] = useState(false);
 
   const handleExport = () => {
     switch (exportTypeFile) {
@@ -34,14 +34,14 @@ const ExportLayout = ({ componentRef }) => {
 
   return (
     <>
-      <Button onClick={() => setOpenExportList(!openExportList)}>
-        <ListItemButton sx={{ fontWeight: "bold" }} primary="Export Layout" />
-      </Button>
+      <ListItemButton onClick={() => setOpenExportList(!openExportList)}>
+        <ListItemText className="mr-5" sx={{ fontWeight: "bold" }} primary="Export Layout" />
+      </ListItemButton>
       <Collapse
         in={openExportList}
         timeout="auto"
         unmountOnExit
-        sx={{ p: 5, mt: 2 }}
+        sx={{ p: , mt: 1 }}
       >
         <Stack direction="row" justifyContent="center" spacing={1} mb={2}>
           <TextField
