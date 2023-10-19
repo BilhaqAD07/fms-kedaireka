@@ -37,12 +37,20 @@ const Diagram = () => {
       labels: ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli'],
       datasets: [
         {
-          label: 'Energi Listrik Digunakan (Wat)',
-          data: [1627, 2201, 1490, 1938, 2182, 1842, 2475],
-          borderColor: '#cb5', 
+          label: 'Energi Listrik Digunakan (Watt)',
+          data: [117, 121, 190, 138, 182, 142, 175],
+          borderColor: '#cb0c9f', 
           fill: false, 
           pointBorderColor: "#cb0c9f",
-          pointBorderWidth: 1,
+          pointBorderWidth: 5,
+        },
+        {
+          label: 'Suhu yang di hasilkan',
+          data: [125, 135, 145, 129, 134, 125, 140],
+          borderColor: '#23FD00',
+          fill: false,
+          pointBorderColor: '#23fd00',
+          pointBorderWidth: 5,
         },
       ]
     })
