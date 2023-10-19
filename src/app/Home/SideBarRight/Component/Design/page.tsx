@@ -80,9 +80,11 @@ const Design = ({ printComponentRef })=>{
         }
     }, [zoomSquare]);
 
-    return (<>
+    return (
+      <div className="dark:bg-secondary_dark dark:text-white min-h-screen">
+        <>
         <FormControl sx={{ mt: "20px", ml: "5px", mr: "5px", width: "150px" }}>
-        <InputLabel id="demo-simple-select-label">zoom</InputLabel>
+        <InputLabel className="dark:bg-secondary_dark dark:text-white" id="demo-simple-select-label">zoom</InputLabel>
         <Select labelId="demo-simple-select-label"
           id="demo-simple-select-label"
           value={zoomSquare}
@@ -125,6 +127,7 @@ const Design = ({ printComponentRef })=>{
         )
         } < ExportLayout componentRef = { printComponentRef }
     /> </>
+    </div>
     )
 
 }

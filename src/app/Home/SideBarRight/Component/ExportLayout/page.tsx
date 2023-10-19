@@ -31,9 +31,10 @@ const ExportLayout = ({ componentRef }) => {
   };
 
   return (
-    <>
-      <ListItemButton onClick={() => setOpenExportList(!openExportList)}>
-        <ListItemText sx={{ fontWeight: "bold" }} primary="Export Layout" />
+    <div className="dark:bg-secondary_dark dark:text-white">
+      <>
+      <ListItemButton className= "capitalize text-black flex cursor-pointer" onClick={() => setOpenExportList(!openExportList)}>
+        <ListItemText className="dark:bg-secondary_dark dark:text-white" primary="Export Layout" />
       </ListItemButton>
       <Collapse
         in={openExportList}
@@ -41,8 +42,8 @@ const ExportLayout = ({ componentRef }) => {
         unmountOnExit
         sx={{ p: 1, mt: 2 }}
       >
-        <Stack direction="row" justifyContent="center" spacing={1} mb={2}>
-          <TextField
+        <Stack direction="row" justifyContent="center"spacing={1} mb={2}>
+          <TextField 
             value={fileName}
             variant="outlined"
             id="outlined-basic"
@@ -66,7 +67,8 @@ const ExportLayout = ({ componentRef }) => {
           Export
         </Button>
       </Collapse>
-    </>
+      </>
+    </div>
   );
 };
 
