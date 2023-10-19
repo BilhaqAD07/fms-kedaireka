@@ -175,7 +175,9 @@ function Chart() {
           </div>
         </Popover>
     </main>
+    <div className='mt-5'>
     <Diagram/>
+    </div>
     </BaseLayout>
   )
 }
