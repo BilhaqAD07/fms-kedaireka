@@ -12,6 +12,7 @@ interface neededDataInterface {
 const neededData: neededDataInterface[] = []
 
 export default function FileInput () {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [colDefs, setColDefs] = useState<Array<{ title: string, field: string }>>([])
   const [data, setData] = useState<any[]>([])
 

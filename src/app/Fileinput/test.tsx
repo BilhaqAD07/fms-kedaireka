@@ -35,7 +35,7 @@ export default function FileInput () {
       const workBook = XLSX.read(bstr, { type: 'binary' })
       const workSheetName = workBook.SheetNames[0]
       const workSheet = workBook.Sheets[workSheetName]
-      const fileData = XLSX.utils.sheet_to_json(workSheet, { header: 1 })
+      const fileData: any[] = XLSX.utils.sheet_to_json(workSheet, { header: 1 })
 
       const headers: string[] | any = fileData[0]
       console.log(headers)
