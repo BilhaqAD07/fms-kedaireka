@@ -39,9 +39,9 @@ const Diagram = () => {
         {
           label: 'Energi Listrik Digunakan (Watt)',
           data: [117, 121, 190, 138, 182, 142, 175],
-          borderColor: '#cb0c9f', 
+          borderColor: '#0112A4', 
           fill: false, 
-          pointBorderColor: "#cb0c9f",
+          pointBorderColor: "#0112A4",
           pointBorderWidth: 5,
         },
         {

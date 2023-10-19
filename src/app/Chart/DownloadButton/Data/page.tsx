@@ -14,7 +14,7 @@ const Data = ({ data, fileName, fileType }) => {
   };
 
   return (
-    <button onClick={handleDownload}> {fileName}</button>
+    <button onClick={handleDownload}>export {fileName}</button>
   );
 };
 
