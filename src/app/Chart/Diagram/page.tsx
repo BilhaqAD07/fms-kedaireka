@@ -34,15 +34,25 @@ const Diagram = () => {
 
   useEffect(() => {
     setChartData({
-      labels: ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli'],
+      labels:['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli'],
       datasets: [
         {
-          label: 'Energi Listrik Digunakan (Wat)',
-          data: [1627, 2201, 1490, 1938, 2182, 1842, 2475],
-          borderColor: '#cb5', 
-          fill: false, 
-          pointBorderColor: "#cb0c9f",
-          pointBorderWidth: 1,
+          label: "Gedung A",
+          data: [32, 82, 51, 60, 11, 65, 88],
+          backgroundColor: "#2196F3",
+          borderColor: "#2196F3",
+        },
+        {
+          label: "Gedung B",
+          data: [37, 52, 41, 37, 61, 44, 77],
+          backgroundColor: "#F44236",
+          borderColor: "#F44236",
+        },
+        {
+          label: "Gedung C",
+          data: [60, 30, 54, 28, 47, 49, 90],
+          backgroundColor: "#FFCA29",
+          borderColor: "#FFCA29",
         },
       ]
     })
@@ -64,7 +74,7 @@ const Diagram = () => {
   return (
     <>
       <div className='w-full md:col-span-2 relative lg:h-[70vh] h-[50vh] m-auto p-4 border rounded-lg bg-white dark:bg-secondary_dark'>
-        <Line data={chartData} options={chartOptions} /> 
+        <Line data={chartData} options={chartOptions}/> 
       </div>
     </>
   );
