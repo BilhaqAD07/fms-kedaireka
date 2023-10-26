@@ -57,7 +57,7 @@ const Profile = () => {
         <div className="flex justify-center items-center min-h-full mx-auto p-50">
     <Card className='flex p-0 mx-auto flex-col dark:bg-secondary_dark text-black dark:text-white w-[400px] h-[300px] min-width-[600px] place-content-center text-center'>
     <AccountCircleIcon
-      className=" mx-auto flex justify-center absolute -top-14 translate-y-40 ml-40 w-[70px] h-[60px]"
+      className=" mx-auto flex justify-center absolute -top-14 translate-y-40 ml-40 w-[70px] h-[60px]" size="90x"
       />
         <List>
           
