@@ -10,6 +10,8 @@ import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { Box } from "@mui/system";
 
+import Diagram from './Diagram/page';
+
 function Chart() {
 
   const [anchorEl, setAnchorEl] = useState(null);
@@ -185,6 +187,7 @@ function Chart() {
             </Button>
           </div>
         </Popover>
+        <Diagram/>
     </main>
     </BaseLayout>
   )
