@@ -187,7 +187,9 @@ function Chart() {
             </Button>
           </div>
         </Popover>
+        <div className='mt-4 bg-white dark:bg-secondary_dark'>
         <Diagram/>
+        </div>
     </main>
     </BaseLayout>
   )
