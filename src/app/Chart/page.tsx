@@ -4,7 +4,7 @@ import BaseLayout from '@/components/baseLayout'
 import React from 'react'
 import { useState } from 'react';
 import { AiOutlineCaretDown } from 'react-icons/ai';
-import {Button, Popover, TextField,} from "@mui/material";
+import {Button, FilledTextFieldProps, OutlinedTextFieldProps, Popover, StandardTextFieldProps, TextField, TextFieldVariants,} from "@mui/material";
 import { DateTimePicker } from "@mui/x-date-pickers/DateTimePicker";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
@@ -101,7 +101,7 @@ function Chart() {
                   label="end"
                   value={selectedDateTimeend}
                   onChange={handleDateTimeChangeend}
-                  renderInput={(params) => <TextField {...params} />}
+                  renderInput={(params: React.JSX.IntrinsicAttributes & { variant?: TextFieldVariants | undefined; } & Omit<OutlinedTextFieldProps | FilledTextFieldProps | StandardTextFieldProps, "variant">) => <TextField {...params} />}
                   className='hover:bg-gray-300 dark:hover:bg-gray-500 text-black dark:text-white'
                 />
                 </div>

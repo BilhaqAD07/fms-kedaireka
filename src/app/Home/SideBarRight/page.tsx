@@ -8,6 +8,7 @@ import { AiOutlineCaretDown } from 'react-icons/ai';
 
 import Design from './Component/Design/page';
 import Devices from './Component/Devices/page';
+import Layout from './Component/Layout/page';
 
 const SideBarRight = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -42,6 +43,9 @@ const SideBarRight = () => {
       return <Design />;
     } else if (selectedSetting === 'Devices') {
       return <Devices />;
+    }
+      else if (selectedSetting === 'Layout') {
+        return <Layout />;
     } else {
       return null;
     }
@@ -96,6 +100,9 @@ const SideBarRight = () => {
               </Button>
               <Button className="hover:bg-gray-300 dark:hover:bg-gray-500 text-black dark:text-white" onClick={() => handleSettingClick('Devices')}>
                 Devices
+              </Button>
+              <Button className="hover:bg-gray-300 dark:hover:bg-gray-500 text-black dark:text-white" onClick={() => handleSettingClick('Layout')}>
+                Layout
               </Button>
             </div>
           </Popover>

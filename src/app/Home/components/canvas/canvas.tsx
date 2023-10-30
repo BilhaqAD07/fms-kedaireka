@@ -1,3 +1,5 @@
+'use client'
+
 import React, { useEffect, useState, useRef } from 'react'
 import { Stage, Layer, Rect, Circle, Image as KonvaImage, Line } from 'react-konva'
 import { Button } from '@mui/material'
