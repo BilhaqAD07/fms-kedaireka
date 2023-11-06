@@ -37,7 +37,7 @@ const Diagram = () => {
       labels: ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli'],
       datasets: [
         {
-          label: 'Energi Listrik Digunakan (Watt)',
+          label: '  Energi Listrik Digunakan (Watt)',
           data: [117, 121, 190, 138, 182, 142, 175],
           borderColor: '#0112A4', 
           fill: false, 
@@ -45,7 +45,7 @@ const Diagram = () => {
           pointBorderWidth: 5,
         },
         {
-          label: 'Suhu yang di hasilkan (Celcius)',
+          label: '  Suhu yang di hasilkan (Celcius)',
           data: [125, 135, 145, 129, 134, 125, 140],
           borderColor: '#23FD00',
           fill: false,
@@ -61,7 +61,7 @@ const Diagram = () => {
         },
         title: {
           display: true,
-          text: 'Diagram Penggunaan Energi Listrik'
+          text: 'Diagram Penggunaan Energi List'
         }
       },
       maintainAspectRatio: false,
@@ -71,7 +71,7 @@ const Diagram = () => {
 
   return (
     <>
-      <div className='w-full md:col-span-2 relative lg:h-[70vh] h-[50vh] m-auto p-4 border rounded-lg bg-white dark:bg-secondary_dark'>
+      <div className='w-full md:col-span-2 relative lg:h-[70vh] h-[50vh] m-auto p-4 border rounded-lg bg-white dark:bg-slate-800 text-black dark:text-white'>
         <Line data={chartData} options={chartOptions} /> 
       </div>
     </>
