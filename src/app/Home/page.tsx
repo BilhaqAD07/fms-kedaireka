@@ -9,12 +9,13 @@ import {
     LinearProgress,
 } from '@mui/material'
 import BaseLayout from "@/components/baseLayout";
+import Layout from "./SideBarRight/Component/Layout/page";
 
 const Home = () => {
     return (
         <BaseLayout>
             <div className="bg-white rounded-lg p-4">
-                HELLOW WORLD
+                <Layout/>
             </div>
         </BaseLayout>
     )

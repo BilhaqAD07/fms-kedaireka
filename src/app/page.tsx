@@ -1,7 +1,6 @@
 'use client'
 import React from "react";
 import SideBarRight from "./Home/SideBarRight/page";
-
 import {
     Button,
     Typography,
@@ -11,6 +10,7 @@ import {
     LinearProgress,
 } from '@mui/material'
 import BaseLayout from "@/components/baseLayout";
+import Layout from "./Home/SideBarRight/Component/Layout/page";
 
 const Home = () => {
     return (
@@ -20,6 +20,7 @@ const Home = () => {
     <SideBarRight />
         </div>
             </Container>
+            <Layout/>
         </BaseLayout>
     )
 }
