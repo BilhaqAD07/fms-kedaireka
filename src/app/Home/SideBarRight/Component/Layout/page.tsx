@@ -26,9 +26,6 @@ const Layout = () => {
       <Button className="bg-blue-500 text-white p-2 m-2 rounded-md" onClick={handleImport}>
           Import
         </Button>
-        <Button className="bg-green-500 text-white p-2 m-2 rounded-md" onClick={handleDownload}>
-          <Download/>
-        </Button>
         <div>
         <div className="w-1/3 h-1/3 absolute left-1/6 top-1/6 bg-blue-500"></div>
         <div className="w-1/3 h-1/3 absolute left-1/2 top-1/6 bg-red-500"></div>
@@ -36,6 +33,9 @@ const Layout = () => {
         <div className="w-1/3 h-1/3 absolute left-1/2 top-1/2 bg-yellow-500"></div>
       </div>
       </div>
+      <Button className="bg-green-500 text-white p-2 m-2 rounded-md" onClick={handleDownload}>
+          <Download/>
+        </Button>
     </div>
   );
 };
